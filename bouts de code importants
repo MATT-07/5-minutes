@@ -1,0 +1,4 @@
+courir (vers le haut avec touche modif : control) : 
+    if pyxel.btn(pyxel.KEY_UP) and pyxel.btn(pyxel.KEY_CTRL):
+        if (y > 0) :
+            y = y - 2
