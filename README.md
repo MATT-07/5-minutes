@@ -1,2 +1,2 @@
 # 5-minutes
-Jeu speedrun pour aller au toilette 
+Jeu speedrun pour aller aux toilettes
