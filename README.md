@@ -18,7 +18,7 @@ Idées concernant le jeu :
 Idées d’obstacles :
 
 * Surveillant: si tu le touches, tu retourne au début
-* CPE: si tu le touche, tu retourne au début avec une pénalité de 20 sec #cinématique dans le bureau si on se chauffe 
+* CPE: si tu le touche, tu retourne au début avec une pénalité de 20 sec °cinématique dans le bureau
 * flaque d’eau: si on marche dessus, on glisse -> bloqué pendant 3 sec
 * Boss : prof de français sur qui il faut jeter des dissertations qui bloque l’entrée des toilettes. 
 
