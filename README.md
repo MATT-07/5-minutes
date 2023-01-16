@@ -22,6 +22,7 @@ Idées d’obstacles :
 * CPE: si tu le touche, tu retourne au début avec une pénalité de 20 sec °cinématique dans le bureau
 * flaque d’eau: si on marche dessus, on glisse -> bloqué pendant 3 sec
 * Boss : prof de français sur qui il faut jeter des dissertations qui bloque l’entrée des toilettes. 
+* Casiers collés au mur : 1chance sur 3 pour qu'il s'ouvre à notre passage, provoquant un ko, on est bloqué pendant 3 secondes
 
 
 
@@ -30,6 +31,6 @@ Idées d’obstacles :
 Achievement :
     
 * “ bravo !! tu as clip dans les backroom “ : A un endroit du niveau prédéfini, si on passe dessus, on aura une photo des backroom qui apparait et l'achivment débloqué. Cette endroit est bien sûr invisible, il faut de la chance pour tomber dessus
-* “Des 0 a gogo!!” : 
+* “Des 0 a gogo!!” : On ne réussit pas à battre le boss à temps
 
-° : idées bonus : On ne réussit pas à battre le boss à temps
+° : idées bonus 
