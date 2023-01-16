@@ -11,7 +11,7 @@ Idées concernant le jeu :
 * °on spawn aléatoirement dans une classe et faut aller aux toilettes les plus proches
 * Il y aura certains easter eggs
 * Le jeu sera en vue de ¾ comme Zelda a Link to the past pour une impression de 3D 
-* Epreuve de sauts au dessus du vide, °Un prof de maths nous attrape la jambe et nous pose une question de calcul mental, à laquelle on doit répondre à l'aide du clavier, si la  réponse est fausse, ondoit recommencer le jeu, sinononpeutpoursuivre.
+* Epreuve de sauts au dessus du vide, °Un prof de maths nous attrape la jambe et nous pose une question de calcul mental, à laquelle on doit répondre à l'aide du clavier, si la  réponse est fausse, ondoit recommencer le jeu, sinon on peut poursuivre.
 
 
 
