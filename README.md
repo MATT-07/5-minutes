@@ -1,17 +1,18 @@
-# 5-minutes
-Jeu speedrun pour aller aux toilettes en moins de 5 minutes
-
+5 Minutes
 
 Idées concernant le jeu : 
 
-On part de la salle de classe avec un compte à rebours → barre qui diminue au cours du temps et avec les pénalités.
+On part de la salle de classe avec un compte à rebours → barre qui diminue au cours du temps et avec les pénalités
 Objectif : se rendre aux toilettes
 nombre de niveaux : 2-3
 On a des obstacles qui bloquent le passage. 
 On a 5 minutes pour arriver aux toilettes, puis retourner en cours.
 A la fin de la barre de temps, le personnage “se fait dessus”.
 #on spawn aléatoirement dans une classe et faut aller aux toilettes les plus proches
- 
+ Il y aura certains easter eggs
+Le jeu sera een vue de ¾ comme Zelda a Link to the past pour une impression de 3D 
+
+
 
 
 Idées d’obstacles :
@@ -21,12 +22,15 @@ CPE: si tu le touche, tu retourne au début avec une pénalité de 20 sec #ciné
 flaque d’eau: si on marche dessus, on glisse -> bloqué pendant 3 sec
 
 
-Boss : prof de français sur qui il faut jeter des dissertations qui bloquent l’entrée des toilettes. 
+Boss : prof de français sur qui il faut jeter des dissertations qui bloque l’entrée des toilettes. 
+
+
 
 
 
 Achievement :
     
--“ bravo !! tu as clip dans les backroom “
+“ bravo !! tu as clip dans les backroom “
+“Des 0 a gogo!!”
 
--“Des 0 a gogo!!”
+# : idées bonus
