@@ -33,4 +33,4 @@ Achievement :
 “ bravo !! tu as clip dans les backroom “
 “Des 0 a gogo!!”
 
-* : idées bonus
+* = idées bonus
