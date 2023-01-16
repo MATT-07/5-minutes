@@ -1,5 +1,9 @@
 5 Minutes
 
+
+
+
+
 Idées concernant le jeu : 
 
 * On part de la salle de classe avec un compte à rebours → barre qui diminue au cours du temps et avec les pénalités
@@ -11,7 +15,7 @@ Idées concernant le jeu :
 * °on spawn aléatoirement dans une classe et faut aller aux toilettes les plus proches
 * Il y aura certains easter eggs
 * Le jeu sera en vue de ¾ comme Zelda a Link to the past pour une impression de 3D 
-* Epreuve de sauts au dessus du vide, °Un prof de maths nous attrape la jambe et nous pose une question de calcul mental, à laquelle on doit répondre à l'aide du clavier, si la  réponse est fausse, ondoit recommencer le jeu, sinon on peut poursuivre.
+
 
 
 
@@ -20,9 +24,17 @@ Idées d’obstacles :
 
 * Surveillant: Si touché, pénalité de 3 secondes
 * CPE: si tu le touche, tu retourne au début avec une pénalité de 20 sec °cinématique dans le bureau
-* flaque d’eau: si on marche dessus, on glisse et on est bloqué pendant 3 secondes
+* Flaque d’eau: si on marche dessus, on glisse et on est bloqué pendant 3 secondes
 * Boss : prof de français sur qui il faut jeter des dissertations qui bloque l’entrée des toilettes. 
 * Casiers collés au mur : 1chance sur 3 pour qu'il s'ouvre à notre passage, provoquant un ko, on est bloqué pendant 3 secondes
+* Le labyrinthe humain : On doit se frayer un chemin à traver les élèves, °attention au profs qui peuvent être cachés.
+* Epreuve de l'escabeau : Un technicien change une ampoule en étant sur un escabeau, on doit passer en dessous en se baissant, sinon il tombe et nous fait perdre du temps ou retourner au début.
+* Epreuve de sauts au dessus du vide, °Un prof de maths nous attrape la jambe et nous pose une question de calcul mental, à laquelle on doit répondre à l'aide du clavier, si la  réponse est fausse, ondoit recommencer le jeu, sinon on peut poursuivre.
+
+Actions possibles pour le personnage :
+* Aller à droite, à gauche, en haut et en bas
+* Sauter
+* S'accroupir
 
 
 
