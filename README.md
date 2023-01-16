@@ -18,9 +18,9 @@ Idées concernant le jeu :
 
 Idées d’obstacles :
 
-* Surveillant: si tu le touches, tu retourne au début
+* Surveillant: Si touché, pénalité de 3 secondes
 * CPE: si tu le touche, tu retourne au début avec une pénalité de 20 sec °cinématique dans le bureau
-* flaque d’eau: si on marche dessus, on glisse -> bloqué pendant 3 sec
+* flaque d’eau: si on marche dessus, on glisse et on est bloqué pendant 3 secondes
 * Boss : prof de français sur qui il faut jeter des dissertations qui bloque l’entrée des toilettes. 
 * Casiers collés au mur : 1chance sur 3 pour qu'il s'ouvre à notre passage, provoquant un ko, on est bloqué pendant 3 secondes
 
