@@ -2,15 +2,15 @@
 
 Idées concernant le jeu : 
 
-On part de la salle de classe avec un compte à rebours → barre qui diminue au cours du temps et avec les pénalités
-Objectif : se rendre aux toilettes
-nombre de niveaux : 2-3
-On a des obstacles qui bloquent le passage. 
-On a 5 minutes pour arriver aux toilettes, puis retourner en cours.
-A la fin de la barre de temps, le personnage “se fait dessus”.
-°on spawn aléatoirement dans une classe et faut aller aux toilettes les plus proches
- Il y aura certains easter eggs
-Le jeu sera een vue de ¾ comme Zelda a Link to the past pour une impression de 3D 
+* On part de la salle de classe avec un compte à rebours → barre qui diminue au cours du temps et avec les pénalités
+* Objectif : se rendre aux toilettes
+* nombre de niveaux : 2-3
+* On a des obstacles qui bloquent le passage. 
+* On a 5 minutes pour arriver aux toilettes, puis retourner en cours.
+* A la fin de la barre de temps, le personnage “se fait dessus”.
+* °on spawn aléatoirement dans une classe et faut aller aux toilettes les plus proches
+* Il y aura certains easter eggs
+* Le jeu sera een vue de ¾ comme Zelda a Link to the past pour une impression de 3D 
 
 
 
