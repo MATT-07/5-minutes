@@ -28,7 +28,7 @@ Idées d’obstacles :
 
 Achievement :
     
-* “ bravo !! tu as clip dans les backroom “ :
-* “Des 0 a gogo!!” :
+* “ bravo !! tu as clip dans les backroom “ : A un endroit du niveau prédéfini, si on passe dessus, on aura une photo des backroom qui apparait et l'achivment débloqué. Cette endroit est bien sûr invisible, il faut de la chance pour tomber dessus
+* “Des 0 a gogo!!” : 
 
 ° : idées bonus
