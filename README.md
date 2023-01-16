@@ -31,4 +31,4 @@ Achievement :
 * “ bravo !! tu as clip dans les backroom “ : A un endroit du niveau prédéfini, si on passe dessus, on aura une photo des backroom qui apparait et l'achivment débloqué. Cette endroit est bien sûr invisible, il faut de la chance pour tomber dessus
 * “Des 0 a gogo!!” : 
 
-° : idées bonus
+° : idées bonus : On ne réussit pas à battre le boss à temps
