@@ -1,6 +1,7 @@
 import pyxel
 
 pyxel.init(60*16, 20*16)
+x,y = 10,10
 
 def deplacement(x,y):
     if pyxel.btn(pyxel.KEY_RIGHT):
@@ -15,11 +16,14 @@ def deplacement(x,y):
     return x,y
 
 def update():
+    global x,y
+    x,y = deplacement(x,y)
     if pyxel.btnp(pyxel.KEY_Q):
         pyxel.quit()
 
 def draw():
+    global x,y
     pyxel.cls(0)
-    pyxel.rect(10, 10, 20, 20, 11)
+    pyxel.rect(x,y, 20, 20, 11)
 
 pyxel.run(update, draw)
