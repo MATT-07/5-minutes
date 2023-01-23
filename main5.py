@@ -10,8 +10,10 @@ def deplacement(x,y):
     if pyxel.btn(pyxel.KEY_LEFT):
         if x > 0:
             x = x - 2
+    if pyxel.btn(pyxel.KEY_DOWN):
+        y = y+2
     if pyxel.btn(pyxel.KEY_UP):
-        y = y+1
+        y = y-2
     
     return x,y
 
