@@ -1,16 +1,21 @@
 import pyxel
 
 pyxel.init(60*16, 20*16)
+h = 20*16 #320
+l = 60*16 #960
+hmax =
+hmin =
 x,y = 10,10
 
 def deplacement(x,y):
     if pyxel.btn(pyxel.KEY_RIGHT):
-        if x < 120:
+        if x < h :
             x = x + 2
     if pyxel.btn(pyxel.KEY_LEFT):
         if x > 0:
             x = x - 2
     if pyxel.btn(pyxel.KEY_DOWN):
+        if y < hmax:
         y = y+2
     if pyxel.btn(pyxel.KEY_UP):
         y = y-2
