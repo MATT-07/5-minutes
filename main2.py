@@ -1,16 +1,16 @@
 import pyxel
 
-pyxel.init(160, 120)
+pyxel.init(60*16, 20*16)
 
 def deplacement(x,y):
-  if pyxel.btn(pyxel.KEY_RIGHT):
+    if pyxel.btn(pyxel.KEY_RIGHT):
         if x < 120:
             x = x + 2
-  if pyxel.btn(pyxel.KEY_LEFT):
-    if x > 0:
-      x = x - 2
-  if pyxel.btn(pyxel.KEY_UP):
-      y = y+1
+    if pyxel.btn(pyxel.KEY_LEFT):
+        if x > 0:
+        x = x - 2
+    if pyxel.btn(pyxel.KEY_UP):
+        y = y+1
     
     return x,y
 
