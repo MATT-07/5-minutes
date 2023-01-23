@@ -8,7 +8,7 @@ def deplacement(x,y):
             x = x + 2
     if pyxel.btn(pyxel.KEY_LEFT):
         if x > 0:
-        x = x - 2
+            x = x - 2
     if pyxel.btn(pyxel.KEY_UP):
         y = y+1
     
