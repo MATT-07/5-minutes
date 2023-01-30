@@ -76,6 +76,14 @@ def deplacement(x,y):
             m = random()
             if m<0.3:
                pyxel.quit() 
+            
+ /////////////////////////////
+    if x == 64*8:
+
+     m = random()
+            if m<0.3:
+               pyxel.quit() 
+            
 
 def update():
     global x,y,hmin,hmax,lv1,lv2
