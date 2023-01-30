@@ -1,7 +1,10 @@
 5 Minutes
 
-
-
+Avancements actuels :
+* Affichage du personnage comme un  carré vert pouvant se déplacer à droite, à gauche, en haut et en bas dans des limites pré-définies
+* Affichage des limites et du couloir de sortie de la salle de classe par des lignes 
+bleues
+* Fonction de changement de niveau en cours de développement (avec une variable niveau qui prend la valeur du niveau actuel)
 
 
 Idées concernant le jeu : 
@@ -14,7 +17,7 @@ Idées concernant le jeu :
 * A la fin de la barre de temps, le personnage “se fait dessus”.
 * °on spawn aléatoirement dans une classe et faut aller aux toilettes les plus proches
 * Il y aura certains easter eggs
-* Le jeu sera en vue de ¾ comme Zelda a Link to the past pour une impression de 3D 
+* Le jeu sera en vue de ¾ comme Zelda a Link to the past pour une impression de 3D
 
 
 
