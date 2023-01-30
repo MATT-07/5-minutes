@@ -132,3 +132,107 @@ def draw_lv1():
 
 
 pyxel.run(update, draw_lv1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+import pyxel
+
+pyxel.init(60*16, 20*16)
+h = 320 
+l = 960 #dimensions de la fenêtre
+ymax = 216
+ymin = 152 #coordonées maximales et minimales de déplacement
+x,y = 22,22 #coordonnées du personnage
+niveau = 1 #variable pour savoir dans quel niveau on se trouve
+
+
+
+def deplacement(x,y):
+    if pyxel.btn(pyxel.KEY_RIGHT):
+        if x < l and y >= ymin :
+            x = x + 2
+    if pyxel.btn(pyxel.KEY_LEFT):
+        if x > 0 and y >= ymin :
+            x = x - 2
+    if pyxel.btn(pyxel.KEY_DOWN):
+        if y < ymax:
+            y = y+2
+    if pyxel.btn(pyxel.KEY_UP):
+        if y > ymin :
+            y = y-2
+    
+    return x,y #fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
+def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
+    """
+    fonction qui permet de definir le point d arriver 
+    
+    >>> arriver(100, 150, 20, 30, 145, 25, 1)
+    2
+    
+    >>> arriver(100, 150, 20, 30, 90, 25, 1)
+    1
+    
+    >>> arriver(100, 150, 20, 30, 100, 25, 1)
+    1
+    
+    >>> arriver(100, 150, 20, 30, 150, 25, 1)
+    1
+    
+    >>> arriver(100, 150, 20, 30, 160, 25, 1)
+    1
+    
+    >>> arriver(100, 150, 20, 30, 145, 10, 1)
+    1
+    
+    >>> arriver(100, 150, 20, 30, 145, 20, 1)
+    1
+    
+    >>> arriver(100, 150, 20, 30, 145, 30, 1)
+    1
+    
+    >>> arriver(100, 150, 20, 30, 145, 35, 1)
+    1
+    """
+    if jx > wcx1 and jx < wcx2 and jy > wcy1 and jy < wcy2:
+        return niveau+1
+    else:
+        return niveau
+
+def update():
+    global x,y,ymin,ymax,niveau,l
+    x,y = deplacement(x,y) #fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
+    niveau = arriver(l-22, l-18, ymin, ymax+20, x, y, niveau)
+    
+def draw(): #
+    global x,y,niveau,ymin,ymax
+    pyxel.cls(0)
+    if niveau ==  1 :
+        pyxel.line(0,ymin,l,ymin,6)
+        pyxel.line(0,ymax+20,l,ymax+20,6)
+        pyxel.line(64,0,64,h,6) #limites de déplacement et couloir de sortie de la salle de classe
+    elif niveau ==  2 :
+        pyxel.line(0,ymin,l,ymin,7)
+        pyxel.line(0,ymax+20,l,ymax+20,7)
+        pyxel.line(120,0,120,h,7) #limites de déplacement et couloir de sortie de la salle de classe
+    pyxel.rect(x,y, 20, 20, 11)
+
+pyxel.run(update, draw) 
