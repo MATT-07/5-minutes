@@ -25,11 +25,11 @@ def deplacement(x,y):
     return x,y #fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
 
 def update():
-    global x,y,ymin,ymax,lv1,lv2
+    global x,y,ymin,ymax,niveau
     x,y = deplacement(x,y) #fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
 
 def draw(): #
-    global x,y,lv1,lv2,ymin,ymax
+    global x,y,niveau,ymin,ymax
     if niveau ==  1 :
         pyxel.cls(0)
         pyxel.line(0,ymin,l,ymin,6)
