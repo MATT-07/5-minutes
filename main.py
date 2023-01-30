@@ -28,7 +28,7 @@ def update():
     global x,y,ymin,ymax,lv1,lv2
     x,y = deplacement(x,y) #fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
 
-def draw():
+def draw(): #
     global x,y,lv1,lv2,ymin,ymax
     if niveau ==  1 :
         pyxel.cls(0)
@@ -37,4 +37,4 @@ def draw():
         pyxel.line(64,0,64,h,6) #limites de déplacement et couloir de sortie de la salle de classe
     pyxel.rect(x,y, 20, 20, 11)
 
-pyxel.run(update, draw) #fonction d'affichage des graphismes en fonction du niveau actuel
+pyxel.run(update, draw) 
