@@ -49,3 +49,9 @@ Achievement :
 * “Des 0 a gogo!!” : On ne réussit pas à battre le boss à temps
 
 ° : idées bonus 
+
+
+Objectif pour la prochaine fois:
+Timer
+collisions
+Pour Matteo,finir ca fonction
