@@ -61,7 +61,6 @@ def draw():
             
         #Personnage
             
-            
         pyxel.rect(x,y, 20, 20, 11)
         pyxel.rect(x+19,y, 1, 1, 8) #un pixel a chaque angle pour faciliter les collisions
         pyxel.rect(x+19,y+19, 1, 1, 8)
