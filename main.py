@@ -4,14 +4,15 @@ import random
 pyxel.init(60*16, 20*16)
 h = 320 
 l = 960 #dimensions de la fenêtre
-ymax = 216
-ymin = 152 #coordonées maximales et minimales de déplacement
+hmax = 216
+hmin = 152 #coordonées maximales et minimales de déplacement
 x,y = 22,22 #coordonnées du personnage
 niveau = 1 #variable pour savoir dans quel niveau on se trouve
 casier = 0
 m = 0
 
 def deplacement(x,y):
+    global hmin,hmax
     if pyxel.btn(pyxel.KEY_RIGHT):
         if x < l and y >= hmin :
             x = x + 2
@@ -24,9 +25,7 @@ def deplacement(x,y):
     if pyxel.btn(pyxel.KEY_UP):
         if y > hmin :
             y = y-2
-   
-
-    return x,y #fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
+    return x, y #fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
     
 
             
@@ -40,22 +39,21 @@ def deplacement(x,y):
 
 
 def update():
-    global x,y,hmin,hmax,niveau,casier,m
+    global x, y
     x,y = deplacement(x,y) #fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
 
 def draw():
     global x,y,niveau,hmin,hmax,casier,m
     if niveau ==  1 :
-        
         pyxel.cls(0)
         
         #pyxel.text(120, 5, "m ="+ str(m), 8) afficher la variable m pour être sûr qu'elle marche bien
         
         if 64*8-2 <= x <= 64*8+2: #Piege quand il passe a 64*8 il y a  30% de chance de perdre
-                m = random.randint(1,3)
-                if m == 3: #choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
-                    pyxel.rect(5,5, 50, 50, 5)
-                    casier = 1
+            m = random.randint(1,3)
+            if m == 3: #choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
+                pyxel.rect(5,5, 50, 50, 5)
+                casier = 1
         if casier == 1 :
             pyxel.rect(5,5, 50, 50, 5)
             
@@ -99,8 +97,6 @@ def draw():
         pyxel.rect(20*19,hmax-1*20, 16, 16, 9)
         pyxel.rect(20*19,hmax-2*20, 16, 16, 9)
         pyxel.rect(20*19,hmax-1*20, 16, 16, 9)
-
-
 
 
 
