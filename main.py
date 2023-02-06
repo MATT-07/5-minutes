@@ -94,7 +94,7 @@ def draw_lv1():
     if lv1 ==  True :
         
         pyxel.cls(0)
-        if x == 64*8:
+        if 64*8-2 <= x <= 64*8+2:
             for i in range (1,2):
                 m = random.randint(1,3)
                 if m == 3:
