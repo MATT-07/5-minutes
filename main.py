@@ -73,17 +73,18 @@ def deplacement(x,y):
     #Piege quand il passe a 64*8 il y a  30% de chance de perdre
     if x == 64*8:
         for i in range (1,2):
-            m = random()
-            if m<0.3:
-               pyxel.quit() 
+            m = random.randint(1,3)
+            if m == 3:
+               pyxel.rect(5,5, 5, 5, 5) 
             
  /////////////////////////////
-    if x == 64*8:
+    #if x == 64*8:
 
-     m = random()
-            if m<0.3:
-               pyxel.quit() 
+     #m = random.randint(1,3)
+      #      if m == 3:
+       #        pyxel.rect(5,hmax-1*20, 16, 16, 9) 
             
+
 
 def update():
     global x,y,hmin,hmax,lv1,lv2
