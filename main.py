@@ -46,13 +46,14 @@ import pyxel
 import random
 
 pyxel.init(60*16, 20*16)
-h = 20*16 #320
-l = 60*16 #960
-hmax =184+16+16
-hmin =136+16
-x,y = 22,22
-niveau = 1
+h = 320 
+l = 960 #dimensions de la fenêtre
+ymax = 216
+ymin = 152 #coordonées maximales et minimales de déplacement
+x,y = 22,22 #coordonnées du personnage
+niveau = 1 #variable pour savoir dans quel niveau on se trouve
 casier = 0
+m = 0
 
 def deplacement(x,y):
     if pyxel.btn(pyxel.KEY_RIGHT):
@@ -69,8 +70,8 @@ def deplacement(x,y):
             y = y-2
    
 
-    return x,y
-    #Piege quand il passe a 64*8 il y a  30% de chance de perdre
+    return x,y #fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
+    
 
             
  #/////////////////////////////
@@ -83,32 +84,38 @@ def deplacement(x,y):
 
 
 def update():
-    global x,y,hmin,hmax,niveau,casier
-    x,y = deplacement(x,y)
-    if pyxel.btnp(pyxel.KEY_Q):
-        pyxel.quit()
+    global x,y,hmin,hmax,niveau,casier,m
+    x,y = deplacement(x,y) #fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
 
-def draw_lv1():
-    global x,y,niveau,hmin,hmax,casier
+def draw():
+    global x,y,niveau,hmin,hmax,casier,m
     if niveau ==  1 :
         
         pyxel.cls(0)
-        if 64*8-2 <= x <= 64*8+2:
-            for i in range (1,2):
+        
+        #pyxel.text(120, 5, "m ="+ str(m), 8) afficher la variable m pour être sûr qu'elle marche bien
+        
+        if 64*8-2 <= x <= 64*8+2: #Piege quand il passe a 64*8 il y a  30% de chance de perdre
                 m = random.randint(1,3)
-                if m == 3:
+                if m == 3: #choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
                     pyxel.rect(5,5, 50, 50, 5)
                     casier = 1
         if casier == 1 :
             pyxel.rect(5,5, 50, 50, 5)
             
+        #Personnage
             
         pyxel.rect(x,y, 20, 20, 11)
+        
+        #Limites de déplacement et couloir de sortie de la salle de classe
+        
         pyxel.line(0,hmin,l,hmin,6)
         pyxel.line(0,hmax+20,l,hmax+20,6)
         pyxel.line(64,0,64,h,6)
         pyxel.line(64*8,0,64*8,h,6)
-                #Bloc ennemi
+        
+        #Bloc ennemi
+            
         pyxel.rect(20*6,hmax-20, 16, 16, 9)
         pyxel.rect(20*7,hmax, 16, 16, 9)
         pyxel.rect(20*7,hmax-1*20, 16, 16, 9)
@@ -139,7 +146,7 @@ def draw_lv1():
 
 
 
-pyxel.run(update, draw_lv1)
+pyxel.run(update, draw)
 
 
 
