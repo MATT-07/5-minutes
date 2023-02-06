@@ -53,7 +53,7 @@ hmin =136+16
 x,y = 22,22
 lv1 = True
 lv2 = False
-rect = 0
+casier = 0
 
 def deplacement(x,y):
     if pyxel.btn(pyxel.KEY_RIGHT):
@@ -84,13 +84,13 @@ def deplacement(x,y):
 
 
 def update():
-    global x,y,hmin,hmax,lv1,lv2,rect
+    global x,y,hmin,hmax,lv1,lv2,casier
     x,y = deplacement(x,y)
     if pyxel.btnp(pyxel.KEY_Q):
         pyxel.quit()
 
 def draw_lv1():
-    global x,y,lv1,lv2,hmin,hmax,rect
+    global x,y,lv1,lv2,hmin,hmax,casier
     if lv1 ==  True :
         
         pyxel.cls(0)
@@ -99,8 +99,8 @@ def draw_lv1():
                 m = random.randint(1,3)
                 if m == 3:
                     pyxel.rect(5,5, 50, 50, 5)
-                    rect = 1
-        if rect == 1 :
+                    casier = 1
+        if casier == 1 :
             pyxel.rect(5,5, 50, 50, 5)
             
         pyxel.rect(x,y, 20, 20, 11)
