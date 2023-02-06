@@ -53,6 +53,7 @@ hmin =136+16
 x,y = 22,22
 lv1 = True
 lv2 = False
+rect = 0
 
 def deplacement(x,y):
     if pyxel.btn(pyxel.KEY_RIGHT):
@@ -71,13 +72,9 @@ def deplacement(x,y):
 
     return x,y
     #Piege quand il passe a 64*8 il y a  30% de chance de perdre
-    if x == 64*8:
-        for i in range (1,2):
-            m = random.randint(1,3)
-            if m == 3:
-               pyxel.rect(5,5, 5, 5, 5) 
+
             
- /////////////////////////////
+ #/////////////////////////////
     #if x == 64*8:
 
      #m = random.randint(1,3)
@@ -87,15 +84,25 @@ def deplacement(x,y):
 
 
 def update():
-    global x,y,hmin,hmax,lv1,lv2
+    global x,y,hmin,hmax,lv1,lv2,rect
     x,y = deplacement(x,y)
     if pyxel.btnp(pyxel.KEY_Q):
         pyxel.quit()
 
 def draw_lv1():
-    global x,y,lv1,lv2,hmin,hmax
+    global x,y,lv1,lv2,hmin,hmax,rect
     if lv1 ==  True :
+        
         pyxel.cls(0)
+        if x == 64*8:
+            for i in range (1,2):
+                m = random.randint(1,3)
+                if m == 3:
+                    pyxel.rect(5,5, 50, 50, 5)
+                    rect = 1
+        if rect == 1 :
+            pyxel.rect(5,5, 50, 50, 5)
+            
         pyxel.rect(x,y, 20, 20, 11)
         pyxel.line(0,hmin,l,hmin,6)
         pyxel.line(0,hmax+20,l,hmax+20,6)
@@ -133,7 +140,6 @@ def draw_lv1():
 
 
 pyxel.run(update, draw_lv1)
-
 
 
 
