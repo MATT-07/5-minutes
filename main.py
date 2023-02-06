@@ -51,8 +51,7 @@ l = 60*16 #960
 hmax =184+16+16
 hmin =136+16
 x,y = 22,22
-lv1 = True
-lv2 = False
+niveau = 1
 casier = 0
 
 def deplacement(x,y):
@@ -84,14 +83,14 @@ def deplacement(x,y):
 
 
 def update():
-    global x,y,hmin,hmax,lv1,lv2,casier
+    global x,y,hmin,hmax,niveau,casier
     x,y = deplacement(x,y)
     if pyxel.btnp(pyxel.KEY_Q):
         pyxel.quit()
 
 def draw_lv1():
-    global x,y,lv1,lv2,hmin,hmax,casier
-    if lv1 ==  True :
+    global x,y,niveau,hmin,hmax,casier
+    if niveau ==  1 :
         
         pyxel.cls(0)
         if 64*8-2 <= x <= 64*8+2:
@@ -102,6 +101,7 @@ def draw_lv1():
                     casier = 1
         if casier == 1 :
             pyxel.rect(5,5, 50, 50, 5)
+            
             
         pyxel.rect(x,y, 20, 20, 11)
         pyxel.line(0,hmin,l,hmin,6)
@@ -140,7 +140,6 @@ def draw_lv1():
 
 
 pyxel.run(update, draw_lv1)
-
 
 
 
