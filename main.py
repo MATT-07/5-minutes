@@ -132,7 +132,7 @@ ymin = 152  # coordonées maximales et minimales de déplacement
 x, y = 22, 22  # coordonnées du personnage
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
-
+hmax = 216
 def deplacement(x, y):
     if pyxel.btn(pyxel.KEY_RIGHT):
         if x < l and y >= ymin:
@@ -199,6 +199,31 @@ def draw():  #
         pyxel.line(0, ymin, l, ymin, 6)
         pyxel.line(0, ymax + 20, l, ymax + 20, 6)
         pyxel.line(64, 0, 64, h, 6)  # limites de déplacement et couloir de sortie de la salle de classe
+        #obstacle niveau 1
+        pyxel.rect(20 * 6, hmax - 20, 16, 16, 9)
+        pyxel.rect(20 * 7, hmax, 16, 16, 9)
+        pyxel.rect(20 * 7, hmax - 1 * 20, 16, 16, 9)
+        pyxel.rect(20 * 7, hmax - 2 * 20, 16, 16, 9)
+        pyxel.rect(20 * 8, hmax - 1 * 20, 16, 16, 9)
+        pyxel.rect(20 * 9, hmax - 3 * 20, 16, 16, 9)
+        pyxel.rect(20 * 9, hmax - 1 * 20, 16, 16, 9)
+        pyxel.rect(20 * 10, hmax - 0 * 20, 16, 16, 9)
+        pyxel.rect(20 * 11, hmax - 2 * 20, 16, 16, 9)
+        pyxel.rect(20 * 11, hmax - 3 * 20, 16, 16, 9)
+        pyxel.rect(20 * 11, hmax - 0 * 20, 16, 16, 9)
+        pyxel.rect(20 * 12, hmax - 0 * 20, 16, 16, 9)
+        pyxel.rect(20 * 13, hmax - 2 * 20, 16, 16, 9)
+        pyxel.rect(20 * 14, hmax - 2 * 20, 16, 16, 9)
+        pyxel.rect(20 * 14, hmax - 1 * 20, 16, 16, 9)
+        pyxel.rect(20 * 15, hmax - 3 * 20, 16, 16, 9)
+        pyxel.rect(20 * 16, hmax - 0 * 20, 16, 16, 9)
+        pyxel.rect(20 * 16, hmax - 1 * 20, 16, 16, 9)
+        pyxel.rect(20 * 17, hmax - 3 * 20, 16, 16, 9)
+        pyxel.rect(20 * 17, hmax - 1 * 20, 16, 16, 9)
+        pyxel.rect(20 * 18, hmax - 0 * 20, 16, 16, 9)
+        pyxel.rect(20 * 19, hmax - 1 * 20, 16, 16, 9)
+        pyxel.rect(20 * 19, hmax - 2 * 20, 16, 16, 9)
+        pyxel.rect(20 * 19, hmax - 1 * 20, 16, 16, 9)
     elif niveau == 2:
         pyxel.line(0, ymin, l, ymin, 7)
         pyxel.line(0, ymax + 20, l, ymax + 20, 7)
