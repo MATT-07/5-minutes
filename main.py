@@ -123,6 +123,7 @@ pyxel.run(update, draw)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 import pyxel
+import random
 
 pyxel.init(60 * 16, 20 * 16)
 h = 320
@@ -133,6 +134,10 @@ x, y = 22, 22  # coordonnées du personnage
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
 hmax = 216
+trentièmes = 30
+secondes = 59
+minutes = 1
+
 def deplacement(x, y):
     if pyxel.btn(pyxel.KEY_RIGHT):
         if x < l and y >= ymin:
@@ -185,16 +190,31 @@ def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
         return True
 
 def update():
-    global x, y, ymin, ymax, niveau, l, arrive
+    global x, y, ymin, ymax, niveau, l, arrive, trentièmes, secondes, minutes
     x, y = deplacement(x, y)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
     arrive = arriver(l - 22, l - 18, ymin, ymax + 20, x, y, niveau)
     if arrive == True:
         niveau+=1
         x,y = 22,22
+    #chronomètre
+    trentièmes -= 1
+    if trentièmes == 0:
+        secondes -= 1
+        trentièmes = 30
+
+    if secondes == 0:
+        minutes -= 1
+        secondes = 59
+
+    if minutes == 0 and secondes == 0 and trentièmes == 0:
+        pyxel.quit()
 
 def draw():  #
-    global x, y, niveau, ymin, ymax
+    global x, y, niveau, ymin, ymax, trentièmes, secondes, minutes
     pyxel.cls(0)
+    #chronomètre
+    pyxel.text(700, 28, "Timer :" + str(minutes) + ":" + str(secondes), 8)
+
     if niveau == 1:
         pyxel.line(0, ymin, l, ymin, 6)
         pyxel.line(0, ymax + 20, l, ymax + 20, 6)
