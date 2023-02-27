@@ -12,6 +12,8 @@ arrive = False
 trentièmes = 30
 secondes = 59
 minutes = 1
+casier = 0
+m = 0
 
 def deplacement(x, y):
     if pyxel.btn(pyxel.KEY_RIGHT):
@@ -73,20 +75,23 @@ def update():
         secondes = 59
 
 def draw():  #
-    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes, casier, m
+    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes, casier, m, niveau
     pyxel.cls(0)
     #chronomètre
     if minutes >= 0 :
-        pyxel.text(150, 32, "Timer :"+ str(minutes)+":"+ str(secondes), 8)
+        pyxel.text(150, 32, "Timer : "+ str(minutes)+":"+ str(secondes), 8)
     else : 
         pyxel.cls(0)
         pyxel.text(60*16/2, 20*16/2,"GAME OVER :(", 8)
     
+    #affichage nb niveau
+    pyxel.text(5,250,"Niveau :"+str(niveau), 4)
+    
     #Personnage
-        pyxel.rect(x,y, 20, 20, 11)
-        pyxel.rect(x+19,y, 1, 1, 8) #un pixel a chaque angle pour faciliter les collisions
-        pyxel.rect(x+19,y+19, 1, 1, 8)
-        pyxel.rect(x,y+19, 1, 1, 8)
+    pyxel.rect(x,y, 20, 20, 11)
+    pyxel.rect(x+19,y, 1, 1, 8) #un pixel a chaque angle pour faciliter les collisions
+    pyxel.rect(x+19,y+19, 1, 1, 8)
+    pyxel.rect(x,y+19, 1, 1, 8)
         
     if niveau == 1:
         
@@ -133,8 +138,6 @@ def draw():  #
             pyxel.line(0, hmin, l, hmin, 10)
             pyxel.line(0, hmax + 20, l, hmax + 20, 10)
                 
-        
-    pyxel.rect(x, y, 20, 20, 11)
-
+    
 
 pyxel.run(update, draw)
