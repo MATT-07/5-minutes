@@ -53,4 +53,5 @@ Achievement :
 
 
 Objectif pour la prochaine fois:
-problème avec les x pour les collisions
+problème avec les x pour les collisions 
+https://www.pyxelstudio.net/studio/ktxmf8js
