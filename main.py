@@ -146,6 +146,106 @@ pyxel.run(update, draw)
 ---------------------------------------------------------------------------------------------
 
 
+import pyxel
+import random
+
+pyxel.init(60 * 16, 20 * 16)
+h = 320
+l = 960  # dimensions de la fenêtre
+hmax = 216
+hmin = 152  # coordonées maximales et minimales de déplacement
+x, y = 22, 22  # coordonnées du personnage
+niveau = 1  # variable pour savoir dans quel niveau on se trouve
+arrive = False
+trentièmes = 30
+secondes = 59
+minutes = 1
+
+xennemi1 = 20 * 6
+yennemi1 = hmax - 20
+
+xennemi2 = 20 * 7
+yennemi2 = hmax
+
+xennemi3 = 20 * 6
+yennemi3 = hmax - 20
+
+def deplacement(x, y):
+    if pyxel.btn(pyxel.KEY_RIGHT):
+        if x < l and y >= hmin:
+            x = x + 2
+    if pyxel.btn(pyxel.KEY_LEFT):
+        if x > 0 and y >= hmin:
+            x = x - 2
+    if pyxel.btn(pyxel.KEY_DOWN):
+        if y < hmax:
+            y = y + 2
+    if pyxel.btn(pyxel.KEY_UP):
+        if y > hmin:
+            y = y - 2
+
+    return x, y  # fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
+
+
+def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
+    """
+    fonction qui permet de definir le point d arriver
+    >>> arriver(100, 150, 20, 30, 145, 25, 1)
+    2
+    >>> arriver(100, 150, 20, 30, 90, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 100, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 150, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 160, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 10, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 20, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 30, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 35, 1)
+    1
+    """
+    if jx > wcx1 and jx < wcx2 and jy > wcy1 and jy < wcy2:
+        return True
+
+def update():
+    global x, y, hmin, hmax, niveau, l, arrive, trentièmes, secondes, minutes,xennemi1,yennemi1,xennemi2,yennemi2,xennemi3,yennemi3
+    x, y = deplacement(x, y)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
+    arrive = arriver(l - 22, l - 18, hmin, hmax + 20, x, y, niveau)
+    if arrive == True:
+        niveau+=1
+        x,y = 22, 185
+    #chronomètre
+    trentièmes -= 1
+    if trentièmes == 0:
+        secondes -= 1
+        trentièmes = 30
+
+    if secondes == 0:
+        minutes -= 1
+        secondes = 59
+        
+    #ennemi 1 :
+    if niveau == 1 :
+        if (x == xennemi1 or x+20 == xennemi1) and (y <= yennemi1 <= y+20) :
+            niveau = 1
+            x, y = 22, 22
+        
+        
+    #ennemi 2 :
+    
+        if (x == xennemi2 or x+20 == xennemi2) and (y <= yennemi2 <= y+20) :
+            x,y = 22, 185
+    
+    if niveau == 2 :
+        if (x == xennemi3 or x+20 == xennemi3) and (y <= yennemi3 <= y+20) :
+            niveau = 1
+            x, y = 22, 22
+    
 def draw():  #
     global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes, casier, m
     pyxel.cls(0)
