@@ -18,7 +18,8 @@ Idées concernant le jeu :
 * °on spawn aléatoirement dans une classe et faut aller aux toilettes les plus proches
 * Il y aura certains easter eggs
 * Le jeu sera en vue de ¾ comme Zelda a Link to the past pour une impression de 3D
-
+* Mettre le chrono en rouge pour les 15 dernieres secondes
+ 
 
 
 
