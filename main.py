@@ -215,16 +215,6 @@ def draw():  #
     #chronomètre
     pyxel.text(700, 28, "Timer :" + str(minutes) + ":" + str(secondes), 8)
 
-    #pyxel.text(120, 5, "m ="+ str(m), 8) afficher la variable m pour être sûr qu'elle marche bien
-        
-        if 64*8-2 <= x <= 64*8+2: #Piege quand il passe a 64*8 il y a  30% de chance de perdre
-            m = random.randint(1,3)
-            if m == 3: #choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
-                pyxel.rect(5,5, 50, 50, 5)
-                casier = 1
-        if casier == 1 :
-            pyxel.rect(5,5, 50, 50, 5)
-    
     if niveau == 1:
         pyxel.line(0, ymin, l, ymin, 6)
         pyxel.line(0, ymax + 20, l, ymax + 20, 6)
