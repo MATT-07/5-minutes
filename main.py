@@ -134,6 +134,7 @@ x, y = 22, 22  # coordonnées du personnage
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
 hmax = 216
+hmin = 152
 trentièmes = 30
 secondes = 59
 minutes = 1
@@ -158,31 +159,22 @@ def deplacement(x, y):
 def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
     """
     fonction qui permet de definir le point d arriver
-
     >>> arriver(100, 150, 20, 30, 145, 25, 1)
     2
-
     >>> arriver(100, 150, 20, 30, 90, 25, 1)
     1
-
     >>> arriver(100, 150, 20, 30, 100, 25, 1)
     1
-
     >>> arriver(100, 150, 20, 30, 150, 25, 1)
     1
-
     >>> arriver(100, 150, 20, 30, 160, 25, 1)
     1
-
     >>> arriver(100, 150, 20, 30, 145, 10, 1)
     1
-
     >>> arriver(100, 150, 20, 30, 145, 20, 1)
     1
-
     >>> arriver(100, 150, 20, 30, 145, 30, 1)
     1
-
     >>> arriver(100, 150, 20, 30, 145, 35, 1)
     1
     """
@@ -195,7 +187,7 @@ def update():
     arrive = arriver(l - 22, l - 18, ymin, ymax + 20, x, y, niveau)
     if arrive == True:
         niveau+=1
-        x,y = 22,22
+        x,y = 22, 180
     #chronomètre
     trentièmes -= 1
     if trentièmes == 0:
@@ -247,7 +239,11 @@ def draw():  #
     elif niveau == 2:
         pyxel.line(0, ymin, l, ymin, 7)
         pyxel.line(0, ymax + 20, l, ymax + 20, 7)
-        pyxel.line(120, 0, 120, h, 7)  # limites de déplacement et couloir de sortie de la salle de classe
+    elif niveau == 3:
+            pyxel.line(0, ymin, l, ymin, 10)
+            pyxel.line(0, ymax + 20, l, ymax + 20, 10)
+                
+        
     pyxel.rect(x, y, 20, 20, 11)
 
 
