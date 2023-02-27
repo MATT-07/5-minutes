@@ -1,3 +1,13 @@
+#Liste des bouts de code :
+
+* fonction courrir vers le haut
+* timer
+* code de Adriel
+* fonction de collisions
+* exemple de code vide
+
+----------------------------------------------------------------------------
+
 #courir (vers le haut avec touche modif : control) : 
 
     if pyxel.btn(pyxel.KEY_UP) and pyxel.btn(pyxel.KEY_CTRL):
@@ -147,5 +157,46 @@ def draw():
 
 
 
+
+pyxel.run(update, draw)
+
+----------------------------------------------------------------------------
+
+#Colisions, immobilisation et retour au début : 
+
+import pyxel
+
+pyxel.init(64, 64)
+
+def update() :
+    global 
+    
+    
+    
+    
+def draw() :
+    global
+    
+    
+
+pyxel.run(update, draw)
+
+----------------------------------------------------------------------------
+#Code vide avec une fenétre de 64 :
+
+import pyxel
+
+pyxel.init(64, 64)
+
+def update() :
+    global 
+    
+    
+    
+    
+def draw() :
+    global
+    
+    
 
 pyxel.run(update, draw)
