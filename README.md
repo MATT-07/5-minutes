@@ -53,6 +53,4 @@ Achievement :
 
 
 Objectif pour la prochaine fois:
-Timer
-collisions
-Pour Matteo,finir ca fonction
+problème avec les x pour les collisions
