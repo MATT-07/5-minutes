@@ -5,6 +5,7 @@
 * code de Adriel
 * fonction de collisions
 * exemple de code vide
+* fonction de collisions
 
 ----------------------------------------------------------------------------
 
@@ -200,3 +201,60 @@ def draw() :
     
 
 pyxel.run(update, draw)
+
+----------------------------------------------------------------------------
+
+import pyxel
+
+pyxel.init(64, 64)
+
+xennemi1 = 20 * 6
+yennemi1 = hmax - 20
+
+xennemi2 = 20 * 7
+yennemi2 = hmax
+
+xennemi3 = 20 * 6
+yennemi3 = hmax - 20
+
+def update() :
+    global xennemi1,yennemi1,xennemi2,yennemi2
+    
+    #ennemi 1 :
+    if niveau == 1 :
+        if (x == xennemi1 or x+20 == xennemi1) and (y <= yennemi1 <= y+20) :
+            niveau = 1
+            x, y = 22, 22
+        
+        
+    #ennemi 2 :
+        if (x == xennemi2 or x+20 == xennemi2) and (y <= yennemi2 <= y+20) :
+            x,y = 22, 185
+            
+    #ennemi 3 :
+     if niveau == 2 :
+        if (x == xennemi3 or x+20 == xennemi3) and (y <= yennemi3 <= y+20) :
+            niveau = 1
+            x, y = 22, 22
+    
+def draw():  #draw du programme principal
+    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes, casier, m
+    pyxel.cls(0)
+
+    if niveau == 1:
+        
+        #obstacle niveau 1
+        pyxel.rect(20 * 6, hmax - 20, 16, 16, 6)
+        pyxel.rect(20 * 7, hmax, 16, 16, 6)
+        
+    elif niveau == 2:
+        pyxel.line(0, hmin, l, hmin, 7)
+        pyxel.line(0, hmax + 20, l, hmax + 20, 7)
+        
+        pyxel.rect(20 * 6, hmax - 20, 16, 16, 6)
+                
+    pyxel.rect(x, y, 20, 20, 11)
+
+
+pyxel.run(update, draw)
+pyxel.run(update,draw)
