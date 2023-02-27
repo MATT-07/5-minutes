@@ -128,29 +128,27 @@ import random
 pyxel.init(60 * 16, 20 * 16)
 h = 320
 l = 960  # dimensions de la fenêtre
-ymax = 216
-ymin = 152  # coordonées maximales et minimales de déplacement
+hmax = 216
+hmin = 152  # coordonées maximales et minimales de déplacement
 x, y = 22, 22  # coordonnées du personnage
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
-hmax = 216
-hmin = 152
 trentièmes = 30
 secondes = 59
 minutes = 1
 
 def deplacement(x, y):
     if pyxel.btn(pyxel.KEY_RIGHT):
-        if x < l and y >= ymin:
+        if x < l and y >= hmin:
             x = x + 2
     if pyxel.btn(pyxel.KEY_LEFT):
-        if x > 0 and y >= ymin:
+        if x > 0 and y >= hmin:
             x = x - 2
     if pyxel.btn(pyxel.KEY_DOWN):
-        if y < ymax:
+        if y < hmax:
             y = y + 2
     if pyxel.btn(pyxel.KEY_UP):
-        if y > ymin:
+        if y > hmin:
             y = y - 2
 
     return x, y  # fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
@@ -182,9 +180,9 @@ def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
         return True
 
 def update():
-    global x, y, ymin, ymax, niveau, l, arrive, trentièmes, secondes, minutes
+    global x, y, hmin, hmax, niveau, l, arrive, trentièmes, secondes, minutes
     x, y = deplacement(x, y)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
-    arrive = arriver(l - 22, l - 18, ymin, ymax + 20, x, y, niveau)
+    arrive = arriver(l - 22, l - 18, hmin, hmax + 20, x, y, niveau)
     if arrive == True:
         niveau+=1
         x,y = 22, 180
@@ -198,18 +196,19 @@ def update():
         minutes -= 1
         secondes = 59
 
-    if minutes == 0 and secondes == 0 and trentièmes == 0:
-        pyxel.quit()
-
 def draw():  #
-    global x, y, niveau, ymin, ymax, trentièmes, secondes, minutes
+    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes
     pyxel.cls(0)
     #chronomètre
-    pyxel.text(700, 28, "Timer :" + str(minutes) + ":" + str(secondes), 8)
+    if minutes >= 0 :
+        pyxel.text(150, 32, "Timer :"+ str(minutes)+":"+ str(secondes), 8)
+    else : 
+        pyxel.cls(0)
+        pyxel.text(60*16/2, 20*16/2,"GAME OVER :(", 8)
 
     if niveau == 1:
-        pyxel.line(0, ymin, l, ymin, 6)
-        pyxel.line(0, ymax + 20, l, ymax + 20, 6)
+        pyxel.line(0, hmin, l, hmin, 6)
+        pyxel.line(0, hmax + 20, l, hmax + 20, 6)
         pyxel.line(64, 0, 64, h, 6)  # limites de déplacement et couloir de sortie de la salle de classe
         #obstacle niveau 1
         pyxel.rect(20 * 6, hmax - 20, 16, 16, 9)
@@ -237,11 +236,11 @@ def draw():  #
         pyxel.rect(20 * 19, hmax - 2 * 20, 16, 16, 9)
         pyxel.rect(20 * 19, hmax - 1 * 20, 16, 16, 9)
     elif niveau == 2:
-        pyxel.line(0, ymin, l, ymin, 7)
-        pyxel.line(0, ymax + 20, l, ymax + 20, 7)
+        pyxel.line(0, hmin, l, hmin, 7)
+        pyxel.line(0, hmax + 20, l, hmax + 20, 7)
     elif niveau == 3:
-            pyxel.line(0, ymin, l, ymin, 10)
-            pyxel.line(0, ymax + 20, l, ymax + 20, 10)
+            pyxel.line(0, hmin, l, hmin, 10)
+            pyxel.line(0, hmax + 20, l, hmax + 20, 10)
                 
         
     pyxel.rect(x, y, 20, 20, 11)
