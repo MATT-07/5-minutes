@@ -2,17 +2,18 @@ courir (vers le haut avec touche modif : control) :
     if pyxel.btn(pyxel.KEY_UP) and pyxel.btn(pyxel.KEY_CTRL):
         if (y > 0) :
             y = y - 2
-#chronomètre tentative 1568648348354 : #ne s'arrête pas à 0:0
+#chronomètre tentative 1568648348354 : 
 import pyxel
 import random
 
 pyxel.init(64, 64)
 trentièmes = 30
-secondes = 59
-minutes = 1
+secondes = 10
+minutes = 0
 
 def update() :
     global trentièmes,secondes,minutes
+    
     
     trentièmes -= 1
     if trentièmes == 0 :
@@ -23,13 +24,12 @@ def update() :
         minutes -= 1
         secondes = 59
     
-    if minutes == 0 and secondes == 0 and trentièmes == 0 :
-        pyxel.quit()
-
 def draw() :
     global trentièmes,secondes,minutes
     
     pyxel.cls(0)
-    pyxel.text(0, 32, "Timer :"+ str(minutes)+":"+ str(secondes), 8)
+    
+    if minutes >= 0 :
+        pyxel.text(0, 32, "Timer :"+ str(minutes)+":"+ str(secondes), 8)
 
 pyxel.run(update, draw)
