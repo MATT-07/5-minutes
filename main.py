@@ -197,7 +197,7 @@ def update():
         secondes = 59
 
 def draw():  #
-    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes
+    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes, casier, m
     pyxel.cls(0)
     #chronomètre
     if minutes >= 0 :
@@ -205,11 +205,26 @@ def draw():  #
     else : 
         pyxel.cls(0)
         pyxel.text(60*16/2, 20*16/2,"GAME OVER :(", 8)
-
+    
+    #Personnage
+        pyxel.rect(x,y, 20, 20, 11)
+        pyxel.rect(x+19,y, 1, 1, 8) #un pixel a chaque angle pour faciliter les collisions
+        pyxel.rect(x+19,y+19, 1, 1, 8)
+        pyxel.rect(x,y+19, 1, 1, 8)
+        
     if niveau == 1:
-        pyxel.line(0, hmin, l, hmin, 6)
-        pyxel.line(0, hmax + 20, l, hmax + 20, 6)
-        pyxel.line(64, 0, 64, h, 6)  # limites de déplacement et couloir de sortie de la salle de classe
+        
+        if 64*8-2 <= x <= 64*8+2: #Piege quand il passe a 64*8 il y a  30% de chance de perdre
+            m = random.randint(1,3)
+            if m == 3: #choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
+                pyxel.rect(5,5,50,50,5)
+        
+    #Limites de déplacement et couloir de sortie de la salle de classe
+        pyxel.line(0,hmin,l,hmin,6)
+        pyxel.line(0,hmax+20,l,hmax+20,6)
+        pyxel.line(64,0,64,h,6)
+        pyxel.line(64*8,0,64*8,h,6) 
+        
         #obstacle niveau 1
         pyxel.rect(20 * 6, hmax - 20, 16, 16, 9)
         pyxel.rect(20 * 7, hmax, 16, 16, 9)
