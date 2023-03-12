@@ -76,11 +76,11 @@ def update():
     if secondes == 0:
         minutes -= 1
         secondes = 59
-
-    if 64 * 8 - 2 <= x <= 64 * 8 + 2:  # Piege quand il passe a 64*8 il y a  30% de chance de perdre
-        m = random.randint(1, 5)
-        if m == 3:  # choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
-            x, y = 22, 22
+    if niveau == 5:
+        if 64 * 8 - 2 <= x <= 64 * 8 + 2:  # Piege quand il passe a 64*8 il y a  30% de chance de perdre
+            m = random.randint(1, 5)
+            if m == 3:  # choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
+                x, y = 22, 22
 
 
 def draw():  #
