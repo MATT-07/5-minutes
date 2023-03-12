@@ -1,7 +1,7 @@
 import pyxel
 import random
 
-pyxel.init(60 * 16, 20 * 16)
+pyxel.init(60 * 16, 20 * 16)#500,300 pour après
 h = 320
 l = 960  # dimensions de la fenêtre
 hmax = 216
