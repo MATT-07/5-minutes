@@ -21,7 +21,7 @@ def deplacement(x, y):
         if x < l and y >= hmin:
             x -= 2
     if pyxel.btn(pyxel.KEY_LEFT):
-        if x > 0 and y >= hmin:
+        if y >= hmin:
             x += 2
     if pyxel.btn(pyxel.KEY_DOWN):
         if y < hmax:
