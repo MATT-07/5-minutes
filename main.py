@@ -14,23 +14,29 @@ secondes = 20
 minutes = 4
 casier = 0
 m = 0
+joueur_x = 22
 
-
-def deplacement(x, y):
+def deplacement(x, y, joueur_x):
     if pyxel.btn(pyxel.KEY_RIGHT):
-        if x < l and y >= hmin:
-            x -= 2
+        if y >= hmin:
+            if joueur_x < 200:
+                joueur_x +=2
+            else:
+                x -= 2
     if pyxel.btn(pyxel.KEY_LEFT):
         if y >= hmin:
-            x += 2
+            if joueur_x >50:
+                joueur_x -=2
+            else:
+                x += 2
     if pyxel.btn(pyxel.KEY_DOWN):
         if y < hmax:
-            y = y + 2
+            y +=2
     if pyxel.btn(pyxel.KEY_UP):
         if y > hmin:
-            y = y - 2
+            y -=2
 
-    return x, y  # fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
+    return x, y,joueur_x  # fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
 
 
 def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
@@ -60,9 +66,9 @@ def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
 
 
 def update():
-    global x, y, hmin, hmax, niveau, l, arrive, trentièmes, secondes, minutes
-    x, y = deplacement(x,y)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
-    arrive = arriver(64*8+x, 64*9+x, hmin, hmax + 20, 22, y, niveau)
+    global x, y, hmin, hmax, niveau, l, arrive, trentièmes, secondes, minutes, joueur_x
+    x, y, joueur_x = deplacement(x,y,joueur_x)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
+    arrive = arriver(64*8+x, 64*9+x, hmin, hmax + 20, joueur_x, y, niveau)
     if arrive == True:
         niveau += 1
         x, y = 22, 180
@@ -83,7 +89,7 @@ def update():
 
 
 def draw():  #
-    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes, casier, m, niveau
+    global x, y, niveau, hmin, hmax, trentièmes, secondes, minutes, casier, m, niveau,joueur_x
     pyxel.cls(0)
     # chronomètre
     if minutes >= 0:
@@ -95,7 +101,7 @@ def draw():  #
         pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
 
         # Personnage
-        pyxel.rect(22, y, 20, 20, 11)
+        pyxel.rect(joueur_x, y, 20, 20, 11)
         pyxel.rect(x + 19, y, 1, 1, 8)  # un pixel a chaque angle pour faciliter les collisions
         pyxel.rect(x + 19, y + 19, 1, 1, 8)
         pyxel.rect(x, y + 19, 1, 1, 8)
@@ -124,6 +130,7 @@ def draw():  #
 
 
 pyxel.run(update, draw)
+
 
 ------------------------------------------------------------------------------------------
 import pyxel
