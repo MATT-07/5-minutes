@@ -456,10 +456,10 @@ def update():
             x,y = 22,22
         elif yennemis[z-1] == y :
             x,y = 22,22
-        elif yennemis[z+2] == y :
-            x,y = 22,22
-        elif yennemis[z-2] == y :
-            x,y = 22,22
+        elif yennemis[z] == y-1 or yennemis[z+1] == y-1 or yennemis[z-1] == y-1 :
+            #x,y = 22,22
+        elif yennemis[z] == y-1 or yennemis[z+1] == y-1 or yennemis[z-1] == y+1 :
+            #x,y = 22,22
 
     #chronomètre
     trentièmes -= 1
