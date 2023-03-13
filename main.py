@@ -10,7 +10,7 @@ x, y = 22, 22  # coordonnées du personnage
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
 trentièmes = 30
-secondes = 59
+secondes = 20
 minutes = 4
 casier = 0
 m = 0
@@ -87,7 +87,10 @@ def draw():  #
     pyxel.cls(0)
     # chronomètre
     if minutes >= 0:
-        pyxel.text(150, 32, "Timer : " + str(minutes) + ":" + str(secondes), 8)
+        if secondes >= 10:
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":" + str(secondes), 8)
+        else:
+            pyxel.text(150,32,"Timer : " + str(minutes) + ":0" + str(secondes), 8)
         # affichage nb niveau
         pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
 
