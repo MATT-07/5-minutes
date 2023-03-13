@@ -457,9 +457,9 @@ def update():
         elif yennemis[z-1] == y :
             x,y = 22,22
         elif yennemis[z] == y-1 or yennemis[z+1] == y-1 or yennemis[z-1] == y-1 :
-            #x,y = 22,22
+            x,y = 22,22
         elif yennemis[z] == y-1 or yennemis[z+1] == y-1 or yennemis[z-1] == y+1 :
-            #x,y = 22,22
+            x,y = 22,22
 
     #chronomètre
     trentièmes -= 1
@@ -506,8 +506,8 @@ def draw():  #
         pyxel.line(64*8,0,64*8,h,6) 
         
         #obstacle niveau 1
-        pyxel.rect(20 * 6, hmax - 20, 16, 16, 6)
-        pyxel.rect(20 * 7, hmax, 16, 16, 6)
+        pyxel.rect(20 * 6, hmax - 20, 16, 16, 9)
+        pyxel.rect(20 * 7, hmax, 16, 16, 9)
         pyxel.rect(20 * 7, hmax - 1 * 20, 16, 16, 9)
         pyxel.rect(20 * 7, hmax - 2 * 20, 16, 16, 9)
         pyxel.rect(20 * 8, hmax - 1 * 20, 16, 16, 9)
