@@ -1,7 +1,7 @@
 import pyxel
 import random
 
-pyxel.init(500, 300)#500,300 pour après
+pyxel.init(500, 300)
 h = 320
 l = 960  # dimensions de la fenêtre
 hmax = 216
@@ -69,9 +69,16 @@ def update():
     global x, y, hmin, hmax, niveau, l, arrive, trentièmes, secondes, minutes, joueur_x
     x, y, joueur_x = deplacement(x,y,joueur_x)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
     arrive = arriver(64*8+x, 64*9+x, hmin, hmax + 20, joueur_x, y, niveau)
+    reviens = arriver(0+x,15+x, hmin, hmax+20, joueur_x, y, niveau)
     if arrive == True:
         niveau += 1
         x, y = 22, 180
+    
+    if niveau > 1:
+        if reviens == True:
+            niveau-=1
+            x,joueur_x,y = -10,500, 180
+    
     # chronomètre
     trentièmes -= 1
     if trentièmes == 0:
@@ -102,9 +109,6 @@ def draw():  #
 
         # Personnage
         pyxel.rect(joueur_x, y, 20, 20, 11)
-        pyxel.rect(x + 19, y, 1, 1, 8)  # un pixel a chaque angle pour faciliter les collisions
-        pyxel.rect(x + 19, y + 19, 1, 1, 8)
-        pyxel.rect(x, y + 19, 1, 1, 8)
 
         if niveau == 1:
 
@@ -117,6 +121,8 @@ def draw():  #
         elif niveau == 2:
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
+            pyxel.line(15+ x, 0, 15+ x, h, 10)
+            pyxel.line(64 *8 + x, 0, 64*8+x, h, 10)
         elif niveau == 3:
             pyxel.line(0, hmin, l, hmin, 10)
             pyxel.line(0, hmax + 20, l, hmax + 20, 10)
