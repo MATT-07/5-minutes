@@ -6,14 +6,12 @@ h = 320
 l = 960  # dimensions de la fenêtre
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
-x, y = 22, 22  # coordonnées du personnage
+x, y = 0, 22  # coordonnées du personnage
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
 trentièmes = 30
 secondes = 20
 minutes = 4
-casier = 0
-m = 0
 joueur_x = 22
 
 def deplacement(x, y, joueur_x):
@@ -72,7 +70,7 @@ def update():
     reviens = arriver(0+x,15+x, hmin, hmax+20, joueur_x, y, niveau)
     if arrive == True:
         niveau += 1
-        x, y = 22, 180
+        joueur_x, y,x = 22, 180,0
     
     if niveau > 1:
         if reviens == True:
@@ -115,12 +113,14 @@ def draw():  #
             # Limites de déplacement et couloir de sortie de la salle de classe
             pyxel.line(0, hmin, l, hmin, 6)
             pyxel.line(0, hmax + 20, l, hmax + 20, 6)
-            pyxel.line(64 + x, 0, 64 + x, h, 6)
+            pyxel.line(0+ x, 0, 0+x, h-168, 6)
+            pyxel.line(64 + x, 0, 64 + x, h-168, 6)
             pyxel.line(64 *8 + x, 0, 64*8 + x, h, 6)
 
         elif niveau == 2:
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
+            pyxel.line(1+ x, 0, 1+ x, h-200, 10)
             pyxel.line(15+ x, 0, 15+ x, h, 10)
             pyxel.line(64 *8 + x, 0, 64*8+x, h, 10)
         elif niveau == 3:
@@ -136,6 +136,7 @@ def draw():  #
 
 
 pyxel.run(update, draw)
+
 
 
 ------------------------------------------------------------------------------------------
