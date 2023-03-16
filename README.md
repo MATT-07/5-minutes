@@ -4,8 +4,6 @@ Avancements actuels :
 * Affichage du personnage comme un  carré vert pouvant se déplacer à droite, à gauche, en haut et en bas dans des limites pré-définies
 * Affichage des limites et du couloir de sortie de la salle de classe par des lignes 
 bleues
-* Fonction de changement de niveau en cours de développement (avec une variable niveau qui prend la valeur du niveau actuel)
-*changer la resolution et faire un deffilement
 
 Idées concernant le jeu : 
 
