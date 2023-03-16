@@ -87,7 +87,7 @@ def update():
         minutes -= 1
         secondes = 59
     if niveau == 5:
-        if 64 * 8 - 2 <= x <= 64 * 8 + 2:  # Piege quand il passe a 64*8 il y a  30% de chance de perdre
+        if 64 * 8 - 2 <= x <= 64 * 8 + 2:  # Piege quand il passe a 64*8 il y a  30% de chance perdre
             m = random.randint(1, 5)
             if m == 3:  # choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
                 x, y = 22, 22
@@ -116,7 +116,10 @@ def draw():  #
             pyxel.line(0+ x, 0, 0+x, h-168, 6)
             pyxel.line(64 + x, 0, 64 + x, h-168, 6)
             pyxel.line(64 *8 + x, 0, 64*8 + x, h, 6)
-
+            #obstacles dans une liste
+            labyrinthe = [(20*19+x,hmax-1*20),(20 * 19+x, hmax - 2 * 20),(20 * 19+x, hmax - 1 * 2)]
+            for i in labyrinthe:
+                pyxel.rect(i[0], i[1], 12, 8, 5)
         elif niveau == 2:
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
@@ -136,6 +139,7 @@ def draw():  #
 
 
 pyxel.run(update, draw)
+
 
 
 
