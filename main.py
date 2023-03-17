@@ -10,8 +10,8 @@ x, y = 0, 22  # coordonnées du personnage
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
 trentièmes = 30
-secondes = 20
-minutes = 4
+secondes = 0
+minutes = 5
 joueur_x = 22
 
 def deplacement(x, y, joueur_x):
@@ -133,7 +133,7 @@ def draw():  #
 
     else:
         pyxel.cls(0)
-        pyxel.text(60 * 16 / 2, 20 * 16 / 2, "GAME OVER :(", 8)
+        pyxel.text(60 * 8 / 2, 20 * 16 / 2, "GAME OVER :(", 8)
 
 
 
