@@ -486,25 +486,25 @@ trentièmes = 30
 secondes = 0
 minutes = 5
 joueur_x = 22
-labyrinthe = [(20*19+x,hmax-1*20,12,8),(20 * 19+x, hmax - 2 * 20,12,8),(20 * 19+x, hmax - 1 * 2,12,8)]
+labyrinthe = [(20*19,hmax-1*20,12,8),(20 * 19, hmax - 2 * 20,12,8),(20 * 19, hmax - 1 * 2,12,8)]
 
-def deplacement(x, y, joueur_x):
-    if pyxel.btn(pyxel.KEY_RIGHT):
+def deplacement(x, y, joueur_x,toucher_D, toucher_G, toucher_H, toucher_B):
+    if pyxel.btn(pyxel.KEY_RIGHT) and toucher_D==False:
         if y >= hmin:
             if joueur_x < 200:
                 joueur_x +=2
             else:
                 x -= 2
-    if pyxel.btn(pyxel.KEY_LEFT):
+    if pyxel.btn(pyxel.KEY_LEFT) and toucher_G == False:
         if y >= hmin:
             if joueur_x >50:
                 joueur_x -=2
             else:
                 x += 2
-    if pyxel.btn(pyxel.KEY_DOWN):
+    if pyxel.btn(pyxel.KEY_DOWN) and toucher_B == False:
         if y < hmax:
             y +=2
-    if pyxel.btn(pyxel.KEY_UP):
+    if pyxel.btn(pyxel.KEY_UP) and toucher_H == False:
         if y > hmin:
             y -=2
 
@@ -535,14 +535,32 @@ def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
     """
     if jx > wcx1 and jx < wcx2 and jy > wcy1 and jy < wcy2:
         return True
-def toucher(x,y,l,h,X,Y):
-    if (x+l) and not(Y<= y or Y>=y+h)
+
+def toucher(x,y,l,h,X,Y,toucher_D, toucher_G,toucher_H,toucher_B):#lettre majuscule pour le joueur
+    if not(X >=(x+l)) and not(Y<= y or Y>=y+h):
+        toucher_D = True
+    if not(X <= x) and not(Y<= y or Y>=y+h):
+        toucher_G = True
+    if x<=X<=(x+l) and not(Y>=y):
+        toucher_H = True
+    if x<=X<=(x+l) and not(Y<=y+h):
+        toucher_B = True
+    else:
+        toucher_D, toucher_G, toucher_H, toucher_B = False,False,False,False
+    return toucher_D, toucher_G, toucher_H, toucher_B
 
 def update():
     global x, y, hmin, hmax, niveau, l, arrive, trentièmes, secondes, minutes, joueur_x, labyrinthe
-    x, y, joueur_x = deplacement(x,y,joueur_x)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
+    
+    toucher_d, toucher_g, toucher_h, toucher_b = False,False,False,False
+    for i in labyrinthe:
+        toucher_d, toucher_g, toucher_h, toucher_b = toucher(i[0],i[1],i[2],i[3], joueur_x,y,toucher_d, toucher_g, toucher_h, toucher_b)
+        
+    x, y, joueur_x = deplacement(x,y,joueur_x,toucher_d, toucher_g, toucher_h, toucher_b)  # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
+    
     arrive = arriver(64*8+x, 64*9+x, hmin, hmax + 20, joueur_x, y, niveau)
     reviens = arriver(0+x,15+x, hmin, hmax+20, joueur_x, y, niveau)
+    
     if arrive == True:
         niveau += 1
         joueur_x, y,x = 22, 180,0
@@ -585,7 +603,6 @@ def draw():  #
         pyxel.rect(joueur_x, y, 20, 20, 11)
 
         if niveau == 1:
-
             # Limites de déplacement et couloir de sortie de la salle de classe
             pyxel.line(0, hmin, l, hmin, 6)
             pyxel.line(0, hmax + 20, l, hmax + 20, 6)
@@ -593,9 +610,8 @@ def draw():  #
             pyxel.line(64 + x, 0, 64 + x, h-168, 6)
             pyxel.line(64 *8 + x, 0, 64*8 + x, h, 6)
             #obstacles dans une liste
-            labyrinthe = [(20*19+x,hmax-1*20,12,8),(20 * 19+x, hmax - 2 * 20,12,8),(20 * 19+x, hmax - 1 * 2,12,8)]
             for i in labyrinthe:
-                pyxel.rect(i[0], i[1], i[2], i[3], 5)
+                pyxel.rect(i[0]+x, i[1], i[2], i[3], 5)
         elif niveau == 2:
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
@@ -609,7 +625,7 @@ def draw():  #
 
     else:
         pyxel.cls(0)
-        pyxel.text(60 * 8 / 2, 20 * 16 / 2, "GAME OVER :(", 8)
+        pyxel.text(60 * 4 / 2, 20 * 16 / 2, "GAME OVER :(", 8)
 
 
 
