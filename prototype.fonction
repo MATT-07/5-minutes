@@ -1,8 +1,0 @@
-fonction arriver(entrée position x et y du joueur et des toillettes)
-  si joueur est entre x1 et x2 et y1 et y2
-    alors afficher message "gagner"
-    fin du jeu
-    
-    
-  
-  
