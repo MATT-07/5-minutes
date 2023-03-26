@@ -544,6 +544,7 @@ def draw():  #
                 
         
     pyxel.rect(x, y, 20, 20, 11)
+    print("")
 
 
 pyxel.run(update, draw)
