@@ -4,7 +4,7 @@ import random
 
 pyxel.init(500, 300)
 h = 320
-l = 960  # dimensions de la fenêtre
+l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 scrolling_x, joueur_y = 0, 22  # coordonnées du personnage
