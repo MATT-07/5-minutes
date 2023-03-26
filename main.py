@@ -1,3 +1,4 @@
+#terminer les collisions
 import pyxel
 import random
 
@@ -106,9 +107,12 @@ def draw():  #
     # chronomètre
     if minutes >= 0:
         if secondes >= 10:
-            pyxel.text(150, 32, "Timer : " + str(minutes) + ":" + str(secondes), 8)
-        else:
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":" + str(secondes), 11)
+        elif minutes == 0 and secondes <= 10:
             pyxel.text(150, 32, "Timer : " + str(minutes) + ":0" + str(secondes), 8)
+        else:
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":0" + str(secondes), 11)
+
         # affichage nb niveau
         pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
 
@@ -138,7 +142,7 @@ def draw():  #
 
     else:
         pyxel.cls(0)
-        pyxel.text(60 * 4 / 2, 20 * 16 / 2, "GAME OVER :(", 8)
+        pyxel.text(230 , 150, "GAME OVER :(", 8)
 
 
 pyxel.run(update, draw)
