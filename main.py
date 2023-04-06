@@ -716,3 +716,197 @@ def draw():  #
 
 
 pyxel.run(update, draw)
+
+-----------------------------------------------
+#terminer les collisions
+import pyxel
+import random
+
+pyxel.init(500, 300)
+h = 320
+l = 960  # dimensions du niveay
+hmax = 216
+hmin = 152  # coordonées maximales et minimales de déplacement
+scrolling_x, joueur_y = 0, 22  # coordonnées du personnage
+niveau = 1  # variable pour savoir dans quel niveau on se trouve
+coin1 = True
+ycoin1 = (random.randint(160,210))
+coin2 = True
+ycoin2 = (random.randint(160,210))
+coin3 = True
+ycoin3 = (random.randint(160,210))
+
+#and joueur_y >= hmin
+
+arrive = False
+trentiemes = 30
+secondes = 0
+minutes = 5
+joueur_x = 22
+labyrinthe = [(20 * 19, hmax - 1 * 20, 12, 8), (20 * 19, hmax - 2 * 20, 12, 8), (20 * 19, hmax - 1 * 2, 12, 8)]
+piece = 0
+
+def deplacement(scrolling_x, joueur_y, joueur_x, obstacle_x, obstacle_y, obstacle_l, obstacle_h):
+    if pyxel.btn(pyxel.KEY_RIGHT)  and (not((obstacle_x + scrolling_x <= joueur_x+20 <= obstacle_x+obstacle_l + scrolling_x or obstacle_x-1 + scrolling_x <= joueur_x+20 <= obstacle_x+obstacle_l-1 + scrolling_x or obstacle_x+1 + scrolling_x <= joueur_x+20 <= obstacle_x+obstacle_l+1+scrolling_x) and obstacle_y < joueur_y)) :
+        if joueur_x < 200:
+            joueur_x += 2
+        else:
+            scrolling_x -= 2
+    if pyxel.btn(pyxel.KEY_LEFT) :
+        #if joueur_y >= hmin:
+        if joueur_x > 50:
+            joueur_x -= 2
+        else:
+            scrolling_x += 2
+    if pyxel.btn(pyxel.KEY_DOWN) and not():
+        #if joueur_y < hmax:
+        joueur_y += 2
+    if pyxel.btn(pyxel.KEY_UP) and not():
+        #if joueur_y > hmin:
+        joueur_y -= 2
+        
+    return scrolling_x, joueur_y, joueur_x  # fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
+
+
+def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
+    """
+    fonction qui permet de definir le point d arriver
+    >>> arriver(100, 150, 20, 30, 145, 25, 1)
+    2
+    >>> arriver(100, 150, 20, 30, 90, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 100, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 150, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 160, 25, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 10, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 20, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 30, 1)
+    1
+    >>> arriver(100, 150, 20, 30, 145, 35, 1)
+    1
+    """
+    if jx > wcx1 and jx < wcx2 and jy > wcy1 and jy < wcy2:
+        return True
+
+def update():
+    global scrolling_x, joueur_y, hmin, hmax, niveau, l, arrive, trentiemes, secondes, minutes, joueur_x, labyrinthe
+
+    for i in labyrinthe:
+        scrolling_x, joueur_y, joueur_x = deplacement(scrolling_x, joueur_y, joueur_x, i[0],i[1],i[2],i[3])
+    #fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
+
+    arrive = arriver(64 * 8 + scrolling_x, 64 * 9 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
+    reviens = arriver(0 + scrolling_x, 15 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
+
+    if arrive == True:
+        niveau += 1
+        joueur_x, joueur_y, scrolling_x = 22, 180, 0
+
+    if niveau > 1:
+        if reviens == True:
+            niveau -= 1
+            scrolling_x, joueur_x, joueur_y = -10, 500, 180
+
+    # chronomètre
+    trentiemes -= 1
+    if trentiemes == 0:
+        secondes -= 1
+        trentiemes = 30
+    if secondes == 0:
+        minutes -= 1
+        secondes = 59
+
+    # piège
+    if niveau == 5:
+        if 64 * 8 - 2 <= scrolling_x <= 64 * 8 + 2:  # Piege quand il passe a 64*8 il y a  30% de chance perdre
+            m = random.randint(1, 5)
+            if m == 3:  # choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éscrolling_xécutée
+                scrolling_x, joueur_y = 22, 22
+
+
+def draw():  #
+    
+
+    
+    global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe, coin1,coin2,coin3, piece
+    pyxel.cls(0)
+    
+    pyxel.line(0, hmax - 2 * 20, 255, hmax - 2 * 20, 6)
+    
+    if coin1 == True and niveau == 1:
+        pyxel.circ(150 + scrolling_x,ycoin1, 6, 10)
+    
+    if 150  + scrolling_x <= joueur_x + 16 <= 156  + scrolling_x and ycoin1 <= joueur_y+10 <= ycoin1 + 10 :
+        coin1 = False
+        piece += 1
+
+    if coin2 == True and niveau == 1:
+        pyxel.circ(250 + scrolling_x,ycoin2, 6, 10)
+    
+    if 250  + scrolling_x <= joueur_x + 16 <= 256  + scrolling_x and ycoin2 <= joueur_y+10 <= ycoin2 + 10 :
+        coin2 = False
+        piece = piece + 1
+                    
+    if coin3 == True and niveau == 1:
+        pyxel.circ(350 + scrolling_x,ycoin3, 6, 10)
+    
+    if 350  + scrolling_x <= joueur_x + 16 <= 356  + scrolling_x and ycoin3 <= joueur_y+10 <= ycoin3 + 10 :
+        coin3 = False
+        piece = piece + 1
+
+    pyxel.text(5, 250+15,"Piece(s) : " + str(piece) , 10)   
+        
+
+    
+    # chronomètre
+    if minutes >= 0:
+        if secondes >= 10:
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":" + str(secondes), 11)
+        elif minutes == 0 and secondes <= 10:
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":0" + str(secondes), 8)
+        else:
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":0" + str(secondes), 11)
+
+        # affichage nb niveau
+        pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
+
+        # Personnage
+        pyxel.rect(joueur_x, joueur_y, 20, 20, 11)
+
+        if niveau == 1:
+            
+            
+                
+        
+            
+            # Limites de déplacement et couloir de sortie de la salle de classe
+            pyxel.line(0, hmin, l, hmin, 6)
+            pyxel.line(0, hmax + 20, l, hmax + 20, 6)
+            pyxel.line(0 + scrolling_x, 0, 0 + scrolling_x, h - 168, 6)
+            pyxel.line(64 + scrolling_x, 0, 64 + scrolling_x, h - 168, 6)
+            pyxel.line(64 * 8 + scrolling_x, 0, 64 * 8 + scrolling_x, h, 6)
+            # obstacles dans une liste
+            for i in labyrinthe:
+                pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
+        elif niveau == 2:
+            pyxel.line(0, hmin, l, hmin, 7)
+            pyxel.line(0, hmax + 20, l, hmax + 20, 7)
+            pyxel.line(1 + scrolling_x, 0, 1 + scrolling_x, h - 200, 10)
+            pyxel.line(15 + scrolling_x, 0, 15 + scrolling_x, h, 10)
+            pyxel.line(64 * 8 + scrolling_x, 0, 64 * 8 + scrolling_x, h, 10)
+        elif niveau == 3:
+            pyxel.line(0, hmin, l, hmin, 10)
+            pyxel.line(0, hmax + 20, l, hmax + 20, 10)
+
+
+    else:
+        pyxel.cls(0)
+        pyxel.text(230 , 150, "GAME OVER :(", 8)
+
+
+pyxel.run(update, draw)
