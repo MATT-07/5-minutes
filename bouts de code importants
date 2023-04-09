@@ -117,17 +117,20 @@ def update():
     #pièce
     if niveau == 1:
         for i in liste_piece1:
-            toucher = collision(joueur_x, joueur_y, i[0],i[1],i[2],i[3])
+            toucher = collision(joueur_x, joueur_y, i[0]+scrolling_x,i[1]+scrolling_x,i[2]+scrolling_x,i[3]+scrolling_x)
             if toucher == True:
                 piece+=1
                 liste_piece1.remove(i)
-def draw():  #
+def draw():
 
     global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe, piece, liste_piece1
     pyxel.cls(0)
 
     #piece
-    pyxel.text(5, 250 + 15, "Piece(s) :" + str(piece), 10)
+    if piece<2:
+        pyxel.text(5, 250 + 15, "Piece :" + str(piece), 10)
+    else:
+        pyxel.text(5, 250 + 15, "Pieces :" + str(piece), 10)
 
     # chronomètre
     if minutes >= 0:
