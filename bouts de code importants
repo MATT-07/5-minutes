@@ -73,12 +73,12 @@ ycoin2 = (random.randint(160,210))
 coin3 = True
 ycoin3 = (random.randint(160,210))
 
-def collision(joueur_x, joueur_y, obstacle_x, obsstacle_y, obstacle_l, obstacle_h):
-    obstacle_x+obstacle_l/2
-    obstacle_y+obstacle_h/2
-    distance = sqrt(((joueur_x+8)-obstacle_x-obstacle_l/2)**2+(joueur_y+8-obstacle_y-obstacle_h/2)**2)
+def collision(joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h):
+    obstacle_x + obstacle_l / 2
+    obstacle_y + obstacle_h / 2
+    distance = math.sqrt(((joueur_x + 8) - obstacle_x - obstacle_l / 2) ** 2 + (joueur_y + 8 - obstacle_y - obstacle_h / 2) ** 2)
     if distance < obstacle_h:
-        True
+        toucher = True
 
 def update():
     global scrolling_x, joueur_y, hmin, hmax, niveau, l, arrive, trentiemes, secondes, minutes, joueur_x, labyrinthe
