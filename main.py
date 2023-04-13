@@ -1,39 +1,45 @@
-#terminer les collisions
-import pyxel
 import random
+import pyxel
+import math
 
 pyxel.init(500, 300)
+joueur_x, joueur_y, scrolling_x = 22, 22, 0  # coordonnées du personnage
+
 h = 320
 l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
-scrolling_x, joueur_y = 0, 22  # coordonnées du personnage
+
 niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
+
 trentiemes = 30
 secondes = 0
 minutes = 5
-joueur_x = 22
+
 labyrinthe = [(20 * 19, hmax - 1 * 20, 12, 8), (20 * 19, hmax - 2 * 20, 12, 8), (20 * 19, hmax - 1 * 2, 12, 8)]
 
+piece = 0
+liste_piece1 = [(150, random.randint(160, 210),6,6), (250, random.randint(160, 210),6,6), (350, random.randint(160, 210),6,6)]
 
-def deplacement(scrolling_x, joueur_y, joueur_x, obstacle_x, obsstacle_y, obstacle_l, obstacle_h):
-    if pyxel.btn(pyxel.KEY_RIGHT) and not(obstacle_x+scrolling_x<=joueur_x+20<=obstacle_x+2+scrolling_x and joueur_y<=obsstacle_y<=joueur_y+20 and joueur_y<=obsstacle_y+obstacle_h<=joueur_y+20) :
+
+def deplacement(scrolling_x, joueur_y, joueur_x):
+    if pyxel.btn(pyxel.KEY_RIGHT):
         if joueur_y >= hmin:
             if joueur_x < 200:
                 joueur_x += 2
             else:
                 scrolling_x -= 2
-    if pyxel.btn(pyxel.KEY_LEFT) and not(obstacle_x+obstacle_l+scrolling_x-2<=joueur_x+20<=obstacle_x+obstacle_l+scrolling_x and joueur_y<=obsstacle_y<=joueur_y+20 and joueur_y<=obsstacle_y+obstacle_h<=joueur_y+20):
+    if pyxel.btn(pyxel.KEY_LEFT):
         if joueur_y >= hmin:
             if joueur_x > 50:
                 joueur_x -= 2
             else:
                 scrolling_x += 2
-    if pyxel.btn(pyxel.KEY_DOWN) and not():
+    if pyxel.btn(pyxel.KEY_DOWN) and not ():
         if joueur_y < hmax:
             joueur_y += 2
-    if pyxel.btn(pyxel.KEY_UP) and not():
+    if pyxel.btn(pyxel.KEY_UP) and not ():
         if joueur_y > hmin:
             joueur_y -= 2
 
@@ -65,12 +71,25 @@ def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
     if jx > wcx1 and jx < wcx2 and jy > wcy1 and jy < wcy2:
         return True
 
-def update():
-    global scrolling_x, joueur_y, hmin, hmax, niveau, l, arrive, trentiemes, secondes, minutes, joueur_x, labyrinthe
 
-    for i in labyrinthe:
-        scrolling_x, joueur_y, joueur_x = deplacement(scrolling_x, joueur_y, joueur_x, i[0],i[1],i[2],i[3])
-    #fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
+
+def collision(joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h):
+    
+    toucher = False
+    distance_x = math.sqrt((joueur_x + 10 - obstacle_x)**2)
+    limite_x = 10+obstacle_l
+    distance_y = math.sqrt((joueur_y + 10 - obstacle_y)**2)
+    limite_y = 10+obstacle_h
+    if distance_x <= limite_x and distance_y <= limite_y:
+        toucher = True
+    return toucher
+
+
+def update():
+    global joueur_x, joueur_y, scrolling_x,  hmin, hmax, niveau, l, arrive, trentiemes, secondes, minutes, labyrinthe, liste_piece1, piece
+
+    scrolling_x, joueur_y, joueur_x = deplacement(scrolling_x, joueur_y, joueur_x)
+    # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
 
     arrive = arriver(64 * 8 + scrolling_x, 64 * 9 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
     reviens = arriver(0 + scrolling_x, 15 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
@@ -99,11 +118,27 @@ def update():
             m = random.randint(1, 5)
             if m == 3:  # choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éscrolling_xécutée
                 scrolling_x, joueur_y = 22, 22
+    #pièce
+    if niveau == 1:
+        toucher = False
+        for i in liste_piece1:
+            toucher = collision(joueur_x, joueur_y, i[0]+scrolling_x,i[1],i[2],i[3])
+            if toucher :
+                piece+=1
+                liste_piece1.remove(i)
+def draw():
 
-
-def draw():  #
-    global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe
+    global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe, piece, liste_piece1
     pyxel.cls(0)
+    if liste_piece1:
+        i = liste_piece1[0]
+        pyxel.text(5,10,str(joueur_x+10)+","+str(joueur_y+10)+","+str(i[0]+scrolling_x)+","+str(i[1])+","+str(i[2])+","+str(i[3]),10)
+    #piece
+    if piece<2:
+        pyxel.text(5, 250 + 15, "Piece :" + str(piece), 10)
+    else:
+        pyxel.text(5, 250 + 15, "Pieces :" + str(piece), 10)
+
     # chronomètre
     if minutes >= 0:
         if secondes >= 10:
@@ -129,6 +164,8 @@ def draw():  #
             # obstacles dans une liste
             for i in labyrinthe:
                 pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
+            for i in liste_piece1:
+                pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
         elif niveau == 2:
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
@@ -139,10 +176,9 @@ def draw():  #
             pyxel.line(0, hmin, l, hmin, 10)
             pyxel.line(0, hmax + 20, l, hmax + 20, 10)
 
-
     else:
         pyxel.cls(0)
-        pyxel.text(230 , 150, "GAME OVER :(", 8)
+        pyxel.text(230, 150, "GAME OVER :(", 8)
 
 
 pyxel.run(update, draw)
