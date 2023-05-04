@@ -193,7 +193,7 @@ def collision(joueur_x, joueur_y, obstacle_x, obsstacle_y, obstacle_l, obstacle_
 * exemple de code vide
 * (ancienne) fonction de collisions
 * nouvelles collisions
-
+* programme ennemi,tirs
 ----------------------------------------------------------------------------
 
 #courir (vers le haut avec touche modif : control) : 
@@ -734,3 +734,7 @@ def draw():  #
 
 
 pyxel.run(update, draw)
+
+------------------------------------------------------------------------
+
+https://www.cahiernum.net/J682W5 -> étape 2
