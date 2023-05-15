@@ -356,7 +356,8 @@ def update():
     if arrive == True and niveau <2:
         niveau += 1
         joueur_x, joueur_y, scrolling_x = 22, 180, 0
-
+    elif niveau == 2 and arrive == True: 
+        fin = True
     if niveau > 1:
         if reviens == True:
             niveau -= 1
@@ -370,14 +371,7 @@ def update():
     if secondes == 0:
         minutes -= 1
         secondes = 59
-
-    # piège
-    if niveau == 5:
-        if 64 * 8 - 2 <= scrolling_x <= 64 * 8 + 2:  # Piege quand il passe a 64*8 il y a  30% de chance perdre
-            m = random.randint(1, 5)
-            if m == 3:  # choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éscrolling_xécutée
-                scrolling_x, joueur_y = 22, 22
-    #pièce
+        
     if niveau == 1:
         toucher = False
         for i in liste_piece1:
@@ -387,8 +381,6 @@ def update():
                 liste_piece1.remove(i)
         for i in labyrinthe:
             joueur_x,joueur_y = collision_deplacement(sens,joueur_x, joueur_y, i[0]+scrolling_x,i[1],i[2],i[3])
-    if niveau == 2:
-        fin = arriver(64 * 7 + scrolling_x, 64 * 8 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
         
 def draw():
 
@@ -411,7 +403,7 @@ def draw():
 
         # affichage nb niveau
         pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
-
+        pyxel.text(5, 150, str(fin), 4)
         # Personnage
         pyxel.rect(joueur_x, joueur_y, 20, 20, 11)
 
@@ -443,6 +435,7 @@ def draw():
     elif fin == True:
         pyxel.cls(0)
         pyxel.text(230,150,"WINNER !!", 8)
+        
     else:
         pyxel.cls(0)
         pyxel.text(230, 150, "GAME OVER :(", 8)
