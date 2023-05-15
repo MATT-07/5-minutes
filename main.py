@@ -266,7 +266,7 @@ l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
-niveau = 2  # variable pour savoir dans quel niveau on se trouve
+niveau = 1  # variable pour savoir dans quel niveau on se trouve
 arrive = False
 fin = False
 
@@ -460,7 +460,7 @@ def draw():
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
             # wc à déplacer de niveau
-            pyxel.rect(64 * 8 + scrolling_x, hmin, 70,hmin+(hmax - hmin),10)
+            pyxel.rect(64 * 8 + scrolling_x, hmin, 70,85,10)
 
         elif niveau == 3:
             pyxel.line(0, hmin, l, hmin, 10)
