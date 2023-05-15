@@ -382,12 +382,12 @@ def collision(joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h
 
 
 def update():
-    global joueur_x, joueur_y, scrolling_x, hmin+1, hmax, niveau, l, arrive, trentiemes, secondes, minutes, labyrinthe, liste_piece1, piece, sens, fin
+    global joueur_x, joueur_y, scrolling_x, hmin, hmax, niveau, l, arrive, trentiemes, secondes, minutes, labyrinthe, liste_piece1, piece, sens, fin
 
     scrolling_x, joueur_y, joueur_x, sens = deplacement(scrolling_x, joueur_y, joueur_x)
     # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
 
-    arrive = arriver(64 * 8 + scrolling_x, 64 * 9 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
+    arrive = arriver(64 * 8 + scrolling_x, 64 * 9 + scrolling_x, hmin+1, hmax + 20, joueur_x, joueur_y, niveau)
     reviens = arriver(0 + scrolling_x, 15 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
 
     if arrive == True and niveau < 2:
