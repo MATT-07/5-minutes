@@ -472,8 +472,7 @@ pyxel.run(update, draw)
 
 
 -------------------------------------------------------------------
-#collison faite, wc en cours 
-import random
+# wc terminé ! 
 import pyxel
 import math
 
@@ -485,7 +484,7 @@ l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
-niveau = 1  # variable pour savoir dans quel niveau on se trouve
+niveau = 2  # variable pour savoir dans quel niveau on se trouve
 arrive = False
 fin = False
 
@@ -494,36 +493,35 @@ secondes = 0
 minutes = 5
 
 labyrinthe = [(20 * 7, hmax, 16, 16, 6),
-(20 * 7, hmax - 1 * 20, 16, 16, 9),
-(20 * 7, hmax - 2 * 20, 16, 16, 9),
-(20 * 8, hmax - 1 * 20, 16, 16, 9),
-(20 * 9, hmax - 3 * 20, 16, 16, 9),
-(20 * 9, hmax - 1 * 20, 16, 16, 9),
-(20 * 10, hmax - 0 * 20, 16, 16, 9),
-(20 * 11, hmax - 2 * 20, 16, 16, 9),
-(20 * 11, hmax - 3 * 20, 16, 16, 9),
-(20 * 11, hmax - 0 * 20, 16, 16, 9),
-(20 * 12, hmax - 0 * 20, 16, 16, 9),
-(20 * 13, hmax - 2 * 20, 16, 16, 9),
-(20 * 14, hmax - 2 * 20, 16, 16, 9),
-(20 * 14, hmax - 1 * 20, 16, 16, 9),
-(20 * 15, hmax - 3 * 20, 16, 16, 9),
-(20 * 16, hmax - 0 * 20, 16, 16, 9),
-(20 * 16, hmax - 1 * 20, 16, 16, 9),
-(20 * 17, hmax - 3 * 20, 16, 16, 9),
-(20 * 17, hmax - 1 * 20, 16, 16, 9),
-(20 * 18, hmax - 0 * 20, 16, 16, 9),
-(20 * 19, hmax - 1 * 20, 16, 16, 9),
-(20 * 19, hmax - 2 * 20, 16, 16, 9),
-(20 * 19, hmax - 1 * 20, 16, 16, 9)]
-
+              (20 * 7, hmax - 1 * 20, 16, 16, 9),
+              (20 * 7, hmax - 2 * 20, 16, 16, 9),
+              (20 * 8, hmax - 1 * 20, 16, 16, 9),
+              (20 * 9, hmax - 3 * 20, 16, 16, 9),
+              (20 * 9, hmax - 1 * 20, 16, 16, 9),
+              (20 * 10, hmax - 0 * 20, 16, 16, 9),
+              (20 * 11, hmax - 2 * 20, 16, 16, 9),
+              (20 * 11, hmax - 3 * 20, 16, 16, 9),
+              (20 * 11, hmax - 0 * 20, 16, 16, 9),
+              (20 * 12, hmax - 0 * 20, 16, 16, 9),
+              (20 * 13, hmax - 2 * 20, 16, 16, 9),
+              (20 * 14, hmax - 2 * 20, 16, 16, 9),
+              (20 * 14, hmax - 1 * 20, 16, 16, 9),
+              (20 * 15, hmax - 3 * 20, 16, 16, 9),
+              (20 * 16, hmax - 0 * 20, 16, 16, 9),
+              (20 * 16, hmax - 1 * 20, 16, 16, 9),
+              (20 * 17, hmax - 3 * 20, 16, 16, 9),
+              (20 * 17, hmax - 1 * 20, 16, 16, 9),
+              (20 * 18, hmax - 0 * 20, 16, 16, 9),
+              (20 * 19, hmax - 1 * 20, 16, 16, 9),
+              (20 * 19, hmax - 2 * 20, 16, 16, 9),
+              (20 * 19, hmax - 1 * 20, 16, 16, 9)]
 
 piece = 0
-liste_piece1 = [(147, 165,6,6), (247, 195,6,6), (347, 184,6,6),(288, hmin+12,6,6)]
+liste_piece1 = [(147, 165, 6, 6), (247, 195, 6, 6), (347, 184, 6, 6), (288, hmin + 12, 6, 6)]
 
 
 def deplacement(scrolling_x, joueur_y, joueur_x):
-    sens = [0,0]
+    sens = [0, 0]
     if pyxel.btn(pyxel.KEY_RIGHT):
         sens[0] = 1
         if joueur_y >= hmin:
@@ -575,33 +573,34 @@ def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
     if jx > wcx1 and jx < wcx2 and jy > wcy1 and jy < wcy2:
         return True
 
-def collision_deplacement(sens,joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l,obstacle_h):
-    if joueur_x+20 > obstacle_x and joueur_x < obstacle_x + obstacle_l and joueur_y+20 > obstacle_y and joueur_y < obstacle_y + obstacle_h:
-        #detecte la collison
-        if sens[0]==1:
-            joueur_x =obstacle_x - 20
-        elif sens[0]==-1:
-            joueur_x = obstacle_x+obstacle_l
-        elif sens[1]==1:
+
+def collision_deplacement(sens, joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h):
+    if joueur_x + 20 > obstacle_x and joueur_x < obstacle_x + obstacle_l and joueur_y + 20 > obstacle_y and joueur_y < obstacle_y + obstacle_h:
+        # detecte la collison
+        if sens[0] == 1:
+            joueur_x = obstacle_x - 20
+        elif sens[0] == -1:
+            joueur_x = obstacle_x + obstacle_l
+        elif sens[1] == 1:
             joueur_y = obstacle_y - 20
-        elif sens[1]==-1:
-            joueur_y = obstacle_y+obstacle_h
-    return joueur_x,joueur_y
+        elif sens[1] == -1:
+            joueur_y = obstacle_y + obstacle_h
+    return joueur_x, joueur_y
+
 
 def collision(joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h):
-    
     toucher = False
-    distance_x = math.sqrt((joueur_x + 10 - obstacle_x)**2)
-    limite_x = 10+obstacle_l
-    distance_y = math.sqrt((joueur_y + 10 - obstacle_y)**2)
-    limite_y = 10+obstacle_h
+    distance_x = math.sqrt((joueur_x + 10 - obstacle_x) ** 2)
+    limite_x = 10 + obstacle_l
+    distance_y = math.sqrt((joueur_y + 10 - obstacle_y) ** 2)
+    limite_y = 10 + obstacle_h
     if distance_x <= limite_x and distance_y <= limite_y:
         toucher = True
     return toucher
 
 
 def update():
-    global joueur_x, joueur_y, scrolling_x,  hmin, hmax, niveau, l, arrive, trentiemes, secondes, minutes, labyrinthe, liste_piece1, piece, sens, fin
+    global joueur_x, joueur_y, scrolling_x, hmin+1, hmax, niveau, l, arrive, trentiemes, secondes, minutes, labyrinthe, liste_piece1, piece, sens, fin
 
     scrolling_x, joueur_y, joueur_x, sens = deplacement(scrolling_x, joueur_y, joueur_x)
     # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
@@ -609,15 +608,15 @@ def update():
     arrive = arriver(64 * 8 + scrolling_x, 64 * 9 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
     reviens = arriver(0 + scrolling_x, 15 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
 
-    if arrive == True and niveau <2:
+    if arrive == True and niveau < 2:
         niveau += 1
-        joueur_x, joueur_y, scrolling_x = 22, 180, 0
-    elif niveau == 2 and arrive == True: 
+        joueur_x, scrolling_x = 22, 0
+    elif niveau == 2 and arrive == True:
         fin = True
     if niveau > 1:
         if reviens == True:
             niveau -= 1
-            scrolling_x, joueur_x, joueur_y = -10, 500, 180
+            scrolling_x, joueur_x = -10, 500
 
     # chronomètre
     trentiemes -= 1
@@ -627,23 +626,23 @@ def update():
     if secondes == 0:
         minutes -= 1
         secondes = 59
-        
+
     if niveau == 1:
         toucher = False
         for i in liste_piece1:
-            toucher = collision(joueur_x, joueur_y, i[0]+scrolling_x,i[1],i[2],i[3])
-            if toucher :
-                piece+=1
+            toucher = collision(joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
+            if toucher:
+                piece += 1
                 liste_piece1.remove(i)
         for i in labyrinthe:
-            joueur_x,joueur_y = collision_deplacement(sens,joueur_x, joueur_y, i[0]+scrolling_x,i[1],i[2],i[3])
-        
-def draw():
+            joueur_x, joueur_y = collision_deplacement(sens, joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
 
+
+def draw():
     global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe, piece, liste_piece1, fin
     pyxel.cls(0)
-    #piece
-    if piece<2:
+    # piece
+    if piece < 2:
         pyxel.text(5, 250 + 15, "Piece :" + str(piece), 10)
     else:
         pyxel.text(5, 250 + 15, "Pieces :" + str(piece), 10)
@@ -659,7 +658,6 @@ def draw():
 
         # affichage nb niveau
         pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
-        pyxel.text(5, 150, str(fin), 4)
         # Personnage
         pyxel.rect(joueur_x, joueur_y, 20, 20, 11)
 
@@ -675,23 +673,21 @@ def draw():
                 pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
             for i in liste_piece1:
                 pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
-        
+
         elif niveau == 2:
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
-            pyxel.line(1 + scrolling_x, 0, 1 + scrolling_x, h - 200, 10)
-            
-            #wc à déplacer de niveau
-            pyxel.rect(64*7+scrolling_x,hmin,128,hmax,10)
-        
+            # wc à déplacer de niveau
+            pyxel.rect(64 * 8 + scrolling_x, hmin, 70,hmin+(hmax - hmin),10)
+
         elif niveau == 3:
             pyxel.line(0, hmin, l, hmin, 10)
             pyxel.line(0, hmax + 20, l, hmax + 20, 10)
 
-    elif fin == True:
-        pyxel.cls(0)
-        pyxel.text(230,150,"WINNER !!", 8)
-        
+        if fin == True:
+            pyxel.cls(0)
+            pyxel.text(230, 150, "WINNER !!", 8)
+
     else:
         pyxel.cls(0)
         pyxel.text(230, 150, "GAME OVER :(", 8)
