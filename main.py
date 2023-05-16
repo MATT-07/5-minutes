@@ -157,7 +157,7 @@ def update():
         fin = True
     if niveau > 1:
         if reviens == True:
-            niveau -= 10
+            niveau -= 1
             scrolling_x, joueur_x = -10, 500
 
     # chronomètre
