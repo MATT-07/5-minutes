@@ -1,4 +1,5 @@
 #code le plus avancé collison faite entre les tous les pièges
+# collison faite, wc en cours
 import pyxel
 import math
 import random
@@ -11,7 +12,7 @@ l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
-niveau = 1  # variable pour savoir dans quel niveau on se trouve
+niveau = 3   # variable pour savoir dans quel niveau on se trouve
 arrive = False
 fin = False
 
@@ -56,11 +57,10 @@ liste_piece2 = [(142, 200, 6, 6, 9), (222, 200, 6, 6, 9), (300, 200, 6, 6, 9)]
 m = random.randint(1, 3)
 m2 = random.randint(1, 3)
 flaques_eau = [(20 * 7, hmax, 16, 2),
-               (20 * 8, hmax - 1 * 20, 5, 2),
-               (20 * 11, hmax - 3 * 20,5, 2),
+               (20 * 8, hmax - 30, 5, 2),
+               (20 * 11, hmax - 10,5, 2),
                (20 * 14, hmax - 1 * 20,5, 2),
-               (20 * 15, hmax - 3 * 20,5, 2),
-               (20 * 18, hmax - 0 * 20,5, 2)]
+               (20 * 18, hmax - 25,5, 2)]
 
 def deplacement(scrolling_x, joueur_y, joueur_x):
     sens = [0, 0]
@@ -78,11 +78,11 @@ def deplacement(scrolling_x, joueur_y, joueur_x):
                 joueur_x -= 2
             else:
                 scrolling_x += 2
-    elif pyxel.btn(pyxel.KEY_DOWN) and not ():
+    elif pyxel.btn(pyxel.KEY_DOWN):
         sens[1] = 1
         if joueur_y < hmax:
             joueur_y += 2
-    elif pyxel.btn(pyxel.KEY_UP) and not ():
+    elif pyxel.btn(pyxel.KEY_UP) :
         sens[1] = -1
         if joueur_y > hmin:
             joueur_y -= 2
@@ -90,7 +90,7 @@ def deplacement(scrolling_x, joueur_y, joueur_x):
     return scrolling_x, joueur_y, joueur_x, sens  # fonction de déplacement avec les flèches du clavier à l'intérieur des coordonnées de déplacement
 
 
-def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy, niveau):
+def arriver(wcx1, wcx2, wcy1, wcy2, jx, jy):
     """
     fonction qui permet de definir le point d arriver
     >>> arriver(100, 150, 20, 30, 145, 25, 1)
@@ -142,13 +142,13 @@ def collision(joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h
 
 
 def update():
-    global joueur_x, joueur_y, scrolling_x, hmin, hmax, niveau, l,m,m2,flaques_eau, arrive, trentiemes, secondes, minutes, labyrinthe, labyrinthe2,labyrinthe3, liste_piece1, liste_piece2, piece, sens, fin
+    global joueur_x, joueur_y, scrolling_x, hmin,hmax, niveau, l,m,m2,flaques_eau, arrive, trentiemes, secondes, minutes, labyrinthe, labyrinthe2,labyrinthe3, liste_piece1, liste_piece2, piece, sens, fin
 
     scrolling_x, joueur_y, joueur_x, sens = deplacement(scrolling_x, joueur_y, joueur_x)
     # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
 
-    arrive = arriver(64 * 8 + scrolling_x, 64 * 9 + scrolling_x, hmin+1, hmax + 20, joueur_x, joueur_y, niveau)
-    reviens = arriver(0 + scrolling_x, 15 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y, niveau)
+    arrive = arriver(64 * 8 + scrolling_x, 64 * 9 + scrolling_x, hmin-1, hmax + 20, joueur_x, joueur_y)
+    reviens = arriver(0 + scrolling_x, 15 + scrolling_x, hmin, hmax + 20, joueur_x, joueur_y)
 
     if arrive == True and niveau < 4:
         niveau += 1
@@ -170,7 +170,6 @@ def update():
         secondes = 59
 
     if niveau == 1:
-        toucher = False
         for i in liste_piece1:
             toucher = collision(joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
             if toucher:
@@ -204,6 +203,7 @@ def update():
         for i in flaques_eau:
             toucher=collision(joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[2])
             if toucher == True:
+                touche = True
                 if sens[0]==1:
                     joueur_x+=2
                 elif sens[0]==-1:
@@ -269,15 +269,12 @@ def draw():
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
             # wc à déplacer de niveau
             pyxel.rect(64 * 8 + scrolling_x, hmin, 70,85,10)
-
         if fin == True:
             pyxel.cls(0)
             pyxel.text(230, 150, "WINNER !!", 8)
-
     else:
         pyxel.cls(0)
         pyxel.text(230, 150, "GAME OVER :(", 8)
-
 
 pyxel.run(update, draw)
 --------------------------------------------------------------
