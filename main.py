@@ -12,7 +12,7 @@ l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
-niveau = 3   # variable pour savoir dans quel niveau on se trouve
+niveau = 1   # variable pour savoir dans quel niveau on se trouve
 arrive = False
 fin = False
 
@@ -44,6 +44,7 @@ labyrinthe = [(20 * 7, hmax, 16, 16, 6),
               (20 * 19, hmax - 2 * 20, 16, 16, 9),
               (20 * 19, hmax - 1 * 20, 16, 16, 9)]
 labyrinthe2 = [(100, 155, 16, 16, 9), (132, 155, 16, 16, 9), (164, 155, 16, 16, 9), (212, 155, 16, 16, 9)]
+labyrinthe2b = [(100, 216, 128, 18, 3)]
 labyrinthe3 = [(20 * 11 + 10, hmax - 3 * 20, 16, 16, 11),
                (20 * 15 + 10, hmax - 3 * 20, 16, 16, 11),
                (20 * 7 + 10, hmax, 16, 16, 11),
@@ -52,6 +53,7 @@ labyrinthe3 = [(20 * 11 + 10, hmax - 3 * 20, 16, 16, 11),
 piece = 0
 liste_piece1 = [(147, 165, 6, 6), (247, 195, 6, 6), (347, 184, 6, 6), (288, hmin + 12, 6, 6)]
 liste_piece2 = [(142, 200, 6, 6, 9), (222, 200, 6, 6, 9), (300, 200, 6, 6, 9)]
+liste_piece3 = [(20*11, hmax - 3*20+6, 6, 6, 9), (20*15, hmax - 3 * 20+6, 6, 6, 9), (20 * 14 + 18, hmax - 1 * 20+28, 6, 6, 9)]
 
 #piège
 m = random.randint(1, 3)
@@ -142,7 +144,7 @@ def collision(joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h
 
 
 def update():
-    global joueur_x, joueur_y, scrolling_x, hmin,hmax, niveau, l,m,m2,flaques_eau, arrive, trentiemes, secondes, minutes, labyrinthe, labyrinthe2,labyrinthe3, liste_piece1, liste_piece2, piece, sens, fin
+    global joueur_x, joueur_y, scrolling_x, hmin,hmax, niveau, l,m,m2,flaques_eau, arrive, trentiemes, secondes, minutes, labyrinthe, labyrinthe2,labyrinthe3, liste_piece1, liste_piece2, piece, sens, fin, liste_piece3
 
     scrolling_x, joueur_y, joueur_x, sens = deplacement(scrolling_x, joueur_y, joueur_x)
     # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
@@ -185,6 +187,8 @@ def update():
                 liste_piece2.remove(i)
         for i in labyrinthe2:
             joueur_x, joueur_y = collision_deplacement(sens, joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
+        for i in labyrinthe2b:
+            joueur_x, joueur_y = collision_deplacement(sens, joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
         #piège
         if 132 - 2 + scrolling_x <= joueur_x <= 132 + 2 + scrolling_x:  # Piege quand il passe a 64*8 il y a  30% de chance perdre
             if m == 3:  # choisit un nombre entre 1 et 3, si il est égal à 3, éxecute cette boucle, il y a donc 1/3 de chances qu'elle soit éxécutée
@@ -198,6 +202,11 @@ def update():
                 niveau = 1
                 m2 = random.randint(1, 3)
     if niveau == 3:
+        for i in liste_piece3:
+            toucher = collision(joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
+            if toucher:
+                piece += 1
+                liste_piece3.remove(i)
         for i in labyrinthe3:
             joueur_x, joueur_y = collision_deplacement(sens, joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
         for i in flaques_eau:
@@ -214,7 +223,7 @@ def update():
                     joueur_y-=2
 
 def draw():
-    global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes,flaques_eau, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe,labyrinthe2,labyrinthe3, piece, liste_piece1,liste_piece2, fin
+    global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes,flaques_eau, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe,labyrinthe2,labyrinthe3, piece, liste_piece1,liste_piece2, fin, liste_piece3
     pyxel.cls(0)
     # piece
     if piece < 2:
@@ -254,6 +263,8 @@ def draw():
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
             for i in labyrinthe2:
                 pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
+            for i in labyrinthe2b:
+                pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 3)
             for i in liste_piece2:
                 pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
 
@@ -264,6 +275,8 @@ def draw():
                 pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
             for i in flaques_eau:
                 pyxel.circ(i[0]+scrolling_x,i[1],5,4)
+            for i in liste_piece3:
+                pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
         elif niveau == 4:
             pyxel.line(0, hmin, l, hmin, 7)
             pyxel.line(0, hmax + 20, l, hmax + 20, 7)
