@@ -41,6 +41,7 @@ labyrinthe = [(20 * 7, hmax, 16, 16, 6),
               (20 * 19, hmax - 1 * 20, 16, 16, 9),
               (20 * 19, hmax - 2 * 20, 16, 16, 9),
               (20 * 19, hmax - 1 * 20, 16, 16, 9)]
+labyrinthe1 = [(-2000, hmin, 70, 85, 10)]
 labyrinthe2 = [(100, 155, 16, 16, 9), (132, 155, 16, 16, 9), (164, 155, 16, 16, 9), (212, 155, 16, 16, 9)]
 labyrinthe2b = [(100, 216, 128, 18, 3)]
 labyrinthe3 = [(20 * 11 + 10, hmax - 3 * 20, 16, 16, 11),
@@ -142,7 +143,7 @@ def collision(joueur_x, joueur_y, obstacle_x, obstacle_y, obstacle_l, obstacle_h
 
 
 def update():
-    global joueur_x, joueur_y, scrolling_x, hmin,hmax, niveau, l,m,m2,flaques_eau, arrive, trentiemes, secondes, minutes, labyrinthe, labyrinthe2,labyrinthe3, liste_piece1, liste_piece2, piece, sens, fin, liste_piece3
+    global joueur_x, joueur_y, scrolling_x, hmin,hmax, niveau, l,m,m2,flaques_eau, arrive, trentiemes, secondes, minutes, labyrinthe, labyrinthe2,labyrinthe3, liste_piece1, liste_piece2, piece, sens, fin, liste_piece3, labyrinthe1
 
     scrolling_x, joueur_y, joueur_x, sens = deplacement(scrolling_x, joueur_y, joueur_x)
     # fonction de mise à jour des coordonnées du personnage en fonction des touches appuyées, à l'aide de la fonction deplacement
@@ -176,6 +177,8 @@ def update():
                 piece += 1
                 liste_piece1.remove(i)
         for i in labyrinthe:
+            joueur_x, joueur_y = collision_deplacement(sens, joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
+        for i in labyrinthe1:
             joueur_x, joueur_y = collision_deplacement(sens, joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
     if niveau == 2:
         for i in liste_piece2:
@@ -224,6 +227,8 @@ def update():
 def draw():
     global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes,flaques_eau, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe,labyrinthe2,labyrinthe3, piece, liste_piece1,liste_piece2, fin, liste_piece3
     pyxel.cls(0)
+    #texte de test
+    #pyxel.text(5,260+15,str(joueur_x)+","+str(joueur_y)+","+str(scrolling_x)+","+str(m)+","+str(m2),7)
     # piece
     if piece < 2:
         pyxel.text(5, 250 + 15, "Piece :" + str(piece), 10)
@@ -254,6 +259,8 @@ def draw():
             # obstacles dans une liste
             for i in labyrinthe:
                 pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
+            for i in labyrinthe1:
+                pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 10)
             for i in liste_piece1:
                 pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
 
