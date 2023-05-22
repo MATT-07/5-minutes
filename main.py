@@ -1,4 +1,3 @@
-#code le plus avancé collison faite entre les tous les pièges
 import pyxel
 import math
 import random
@@ -11,7 +10,7 @@ l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
-niveau = 1   # variable pour savoir dans quel niveau on se trouve
+niveau = 3   # variable pour savoir dans quel niveau on se trouve
 arrive = False
 fin = False
 
@@ -207,7 +206,8 @@ def update():
                 piece += 1
                 liste_piece3.remove(i)
         for i in labyrinthe3:
-            joueur_x, joueur_y = collision_deplacement(sens, joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[3])
+                if joueur_x + 20 > i[0]+scrolling_x and joueur_x < i[0] + i[2] + scrolling_x and joueur_y + 20 > i[1] and joueur_y < i[1] + i[3]:
+                    joueur_x,joueur_y, scrolling_x, niveau = 22,22,0,1
         for i in flaques_eau:
             toucher=collision(joueur_x, joueur_y, i[0] + scrolling_x, i[1], i[2], i[2])
             if toucher == True:
