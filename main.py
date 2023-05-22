@@ -1,5 +1,4 @@
 #code le plus avancé collison faite entre les tous les pièges
-# collison faite, wc en cours
 import pyxel
 import math
 import random
