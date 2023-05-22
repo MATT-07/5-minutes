@@ -10,7 +10,7 @@ l = 960  # dimensions du niveay
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
-niveau = 3   # variable pour savoir dans quel niveau on se trouve
+niveau = 1   # variable pour savoir dans quel niveau on se trouve
 arrive = False
 fin = False
 
