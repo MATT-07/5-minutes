@@ -6,7 +6,7 @@ pyxel.init(500, 300)
 joueur_x, joueur_y, scrolling_x = 22, 22, 0  # coordonnées du personnage
 
 h = 320
-l = 960  # dimensions du niveay
+l = 960  # dimensions du niveau
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
