@@ -725,7 +725,7 @@ def draw():  #
     
     -------------------------------------------------------------------------------------------------------
 #code avec images    
-    import pyxel
+import pyxel
 import math
 import random
 
@@ -956,11 +956,107 @@ def draw():
     global scrolling_x, joueur_y, niveau, hmin, hmax, trentiemes,flaques_eau, secondes, minutes, casier, m, niveau, joueur_x, labyrinthe,labyrinthe2,labyrinthe3, piece, liste_piece1,liste_piece2, fin, liste_piece3
     pyxel.cls(0)
     # piece
+
+        
+    pyxel.bltm(0+ scrolling_x,0,0,0,0,1000,320)
+    if niveau == 1:
+        pyxel.bltm(0+ scrolling_x,0,0,0,340,64,164)    
+
+
+              
+              #(20 * 9, hmax - 3 * 20, 16, 16, 9),
+              
+              #(20 * 10, hmax - 0 * 20, 16, 16, 9),
+              
+              #(20 * 11, hmax - 3 * 20, 16, 16, 9),
+              #(20 * 11, hmax - 0 * 20, 16, 16, 9),
+              #(20 * 12, hmax - 0 * 20, 16, 16, 9),
+              #(20 * 13, hmax - 2 * 20, 16, 16, 9),
+              #(20 * 14, hmax - 2 * 20, 16, 16, 9),
+              #(20 * 14, hmax - 1 * 20, 16, 16, 9),
+              #(20 * 15, hmax - 3 * 20, 16, 16, 9),
+              #(20 * 16, hmax - 0 * 20, 16, 16, 9),
+              #(20 * 16, hmax - 1 * 20, 16, 16, 9),
+              #(20 * 17, hmax - 3 * 20, 16, 16, 9),
+              #(20 * 17, hmax - 1 * 20, 16, 16, 9),
+              #(20 * 18, hmax - 0 * 20, 16, 16, 9),
+              #(20 * 19, hmax - 1 * 20, 16, 16, 9),
+              #(20 * 19, hmax - 2 * 20, 16, 16, 9),
+              #(20 * 19, hmax - 1 * 20, 16, 16, 9)]   
+
+        
+        # Personnage
+        
+        
+    pyxel.blt(joueur_x, joueur_y, 0, 0, 0, 16, 16)
+    pyxel.blt(joueur_x, joueur_y-16, 0, 16, 0, 16, 16)
+        
+    if pyxel.btn(pyxel.KEY_UP):
+        pyxel.blt(joueur_x, joueur_y, 0, 0, 16, 16, 16)
+        pyxel.blt(joueur_x, joueur_y-16, 0, 16, 16, 16, 16)
+            
+    if pyxel.btn(pyxel.KEY_RIGHT):
+        pyxel.blt(joueur_x, joueur_y, 0, 0, 32, 16, 16)
+        pyxel.blt(joueur_x, joueur_y-16, 0, 16, 32, 16, 16)
+            
+    if pyxel.btn(pyxel.KEY_LEFT):
+        pyxel.blt(joueur_x, joueur_y, 0, 0, 48, 16, 16)
+        pyxel.blt(joueur_x, joueur_y-16, 0, 16, 48, 16, 16)
+
+    if niveau == 1:
+        # Limites de déplacement et couloir de sortie de la salle de classe
+        pyxel.line(0, hmin, l, hmin, 6)
+        pyxel.line(0, hmax + 20, l, hmax + 20, 6)
+        pyxel.line(0 + scrolling_x, 0, 0 + scrolling_x, h - 168, 6)
+        pyxel.line(64 + scrolling_x, 0, 64 + scrolling_x, h - 168, 6)
+        pyxel.line(64 * 8 + scrolling_x, 0, 64 * 8 + scrolling_x, h, 6)
+        # obstacles dans une liste
+        for i in labyrinthe:
+            pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
+        for i in liste_piece1:
+            pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
+
+    elif niveau == 2:
+        pyxel.line(0, hmin, l, hmin, 7)
+        pyxel.line(0, hmax + 20, l, hmax + 20, 7)
+        for i in labyrinthe2:
+            pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
+        for i in labyrinthe2b:
+            pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 3)
+        for i in liste_piece2:
+            pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
+
+    elif niveau == 3:
+        pyxel.line(0, hmin, l, hmin, 10)
+        pyxel.line(0, hmax + 20, l, hmax + 20, 10)
+        for i in labyrinthe3:
+            pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
+        for i in flaques_eau:
+            pyxel.circ(i[0]+scrolling_x,i[1],5,4)
+        for i in liste_piece3:
+            pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
+    elif niveau == 4:
+        pyxel.line(0, hmin, l, hmin, 7)
+        pyxel.line(0, hmax + 20, l, hmax + 20, 7)
+        # wc à déplacer de niveau
+        pyxel.rect(64 * 8 + scrolling_x, hmin, 70,85,10)
+    if fin == True:
+        pyxel.cls(0)
+        pyxel.text(230, 150, "WINNER !!", 8)
+            
     if piece < 2:
         pyxel.text(5, 250 + 15, "Piece :" + str(piece), 10)
     else:
         pyxel.text(5, 250 + 15, "Pieces :" + str(piece), 10)
+    
+    if niveau == 1:
 
+            
+        pyxel.blt(20 * 7+ scrolling_x, hmax - 40, 0, 16,64,16,32)
+        pyxel.blt(20 * 7+ scrolling_x, hmax-10, 0,0,66,16,32)
+        pyxel.blt(20 * 8+ scrolling_x, hmax - 35,0,32,67, 14,29)
+        pyxel.blt(20 * 9+ scrolling_x, hmax - 35,0, 48,66,16,30)
+        pyxel.blt(20 * 11+ scrolling_x, hmax - 60,0,64, 64, 16,32)
     # chronomètre
     if minutes >= 0:
         if secondes >= 10:
@@ -973,57 +1069,8 @@ def draw():
         # affichage nb niveau
         pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
                 #dalles au sole
-        pyxel.bltm(0+ scrolling_x,0,0,0,0,64,160)
-        pyxel.bltm(0+ scrolling_x,152,0,0,40,500,64)# Personnage
-        
-        pyxel.blt(joueur_x, joueur_y, 0, 0, 0, 16, 16)
-        pyxel.blt(joueur_x, joueur_y-16, 0, 16, 0, 16, 16)
-
-        if niveau == 1:
-            # Limites de déplacement et couloir de sortie de la salle de classe
-            pyxel.line(0, hmin, l, hmin, 6)
-            pyxel.line(0, hmax + 20, l, hmax + 20, 6)
-            pyxel.line(0 + scrolling_x, 0, 0 + scrolling_x, h - 168, 6)
-            pyxel.line(64 + scrolling_x, 0, 64 + scrolling_x, h - 168, 6)
-            pyxel.line(64 * 8 + scrolling_x, 0, 64 * 8 + scrolling_x, h, 6)
-            # obstacles dans une liste
-            for i in labyrinthe:
-                pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
-            for i in liste_piece1:
-                pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
-
-        elif niveau == 2:
-            pyxel.line(0, hmin, l, hmin, 7)
-            pyxel.line(0, hmax + 20, l, hmax + 20, 7)
-            for i in labyrinthe2:
-                pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
-            for i in labyrinthe2b:
-                pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 3)
-            for i in liste_piece2:
-                pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
-
-        elif niveau == 3:
-            pyxel.line(0, hmin, l, hmin, 10)
-            pyxel.line(0, hmax + 20, l, hmax + 20, 10)
-            for i in labyrinthe3:
-                pyxel.rect(i[0] + scrolling_x, i[1], i[2], i[3], 5)
-            for i in flaques_eau:
-                pyxel.circ(i[0]+scrolling_x,i[1],5,4)
-            for i in liste_piece3:
-                pyxel.circ(i[0] + scrolling_x, i[1], i[2], 10)
-        elif niveau == 4:
-            pyxel.line(0, hmin, l, hmin, 7)
-            pyxel.line(0, hmax + 20, l, hmax + 20, 7)
-            # wc à déplacer de niveau
-            pyxel.rect(64 * 8 + scrolling_x, hmin, 70,85,10)
-        if fin == True:
-            pyxel.cls(0)
-            pyxel.text(230, 150, "WINNER !!", 8)
     else:
         pyxel.cls(0)
         pyxel.text(230, 150, "GAME OVER :(", 8)
-
-pyxel.run(update, draw)
-
 
 pyxel.run(update, draw)
