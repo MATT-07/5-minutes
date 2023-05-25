@@ -313,7 +313,7 @@ def draw():
         pyxel.line(0, hmin, l, hmin, 7)
         pyxel.line(0, hmax + 20, l, hmax + 20, 7)
         # wc à déplacer de niveau
-        pyxel.rect(64 * 8 + scrolling_x, hmin, 70,85,10)
+        #pyxel.rect(64 * 8 + scrolling_x, hmin, 70,85,10)
     if fin == True:
         pyxel.cls(0)
         pyxel.text(230, 150, "WINNER !!", 8)
@@ -343,11 +343,11 @@ def draw():
     # chronomètre
     if minutes >= 0:
         if secondes >= 10:
-            pyxel.text(150, 32, "Timer : " + str(minutes) + ":" + str(secondes), 11)
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":" + str(secondes), 0)
         elif minutes == 0 and secondes <= 10:
             pyxel.text(150, 32, "Timer : " + str(minutes) + ":0" + str(secondes), 8)
         else:
-            pyxel.text(150, 32, "Timer : " + str(minutes) + ":0" + str(secondes), 11)
+            pyxel.text(150, 32, "Timer : " + str(minutes) + ":0" + str(secondes), 0)
 
         # affichage nb niveau
         pyxel.text(5, 250, "Niveau :" + str(niveau), 4)
