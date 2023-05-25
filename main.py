@@ -1092,14 +1092,14 @@ l = 960  # dimensions du niveau
 hmax = 216
 hmin = 152  # coordonées maximales et minimales de déplacement
 
-niveau = 3   # variable pour savoir dans quel niveau on se trouve
+niveau = 4   # variable pour savoir dans quel niveau on se trouve
 arrive = False
 fin = False
 
 trentiemes = 30
 secondes = 0
 minutes = 5
-
+pyxel.playm(msc, [tick], [loop])
 
 
 labyrinthe = [(20 * 7, hmax, 16, 16, 6),
@@ -1312,6 +1312,8 @@ def draw():
 
         
     pyxel.bltm(0+ scrolling_x,0,0,0,0,1000,320)
+    pyxel.bltm(-700+ scrolling_x,0,0,0,0,700,320)
+    
     if niveau == 1:
         pyxel.bltm(0+ scrolling_x,0,0,0,340,64,164)
         pyxel.blt(20 * 11+ scrolling_x, hmax - 60,0,64, 64, 16,32)
@@ -1319,6 +1321,7 @@ def draw():
         pyxel.blt(20 * 14+scrolling_x, hmax - 2 * 20, 0,0,66, 16, 32)
         pyxel.blt(20 * 15+scrolling_x, hmax - 4 * 20,0, 48,66,16,30)
         pyxel.blt(20 * 17+scrolling_x, hmax - 3 * 20, 0,128,0,16,16)
+        pyxel.blt(-600+ scrolling_x,hmax - 5 * 20, 0,144,0,32,32)
         
     if niveau ==2:
         pyxel.blt(96+scrolling_x, hmax,0,0,104,8*16,16)
@@ -1338,6 +1341,9 @@ def draw():
         pyxel.blt(20 * 15 + 10+scrolling_x, hmax - 3 * 20, 0,128,16,16,16)
         pyxel.blt(20 * 7 + 10+scrolling_x, hmax, 0,128,16,16,16)
         pyxel.blt(20 * 14 + 10+scrolling_x, hmax - 1 * 20, 0,128,16,16,16)
+        
+    if niveau ==4:
+        pyxel.blt(520+scrolling_x,hmax - 5 * 20,0,176,0,32,32)
     
                
             
@@ -1430,3 +1436,4 @@ def draw():
         pyxel.text(230, 150, "GAME OVER :(", 8)
 
 pyxel.run(update, draw)
+
