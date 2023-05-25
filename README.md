@@ -1,13 +1,13 @@
 5 Minutes
 
-tester le jeu : https://www.pyxelstudio.net/studio/
+tester le jeu : [https://www.pyxelstudio.net/studio/]
 
 
 Avancements actuels :
-* Affichage du personnage comme un  carré vert pouvant se déplacer à droite, à gauche, en haut et en bas dans des limites pré-définies
-* Affichage des limites et du couloir de sortie de la salle de classe par des lignes 
-bleues
-*entrain de faire les graphismes
+* 3 niveaux
+* Graphismes finis
+* Des pièces à récupérer
+* En cours d'avancement
 
 Idées concernant le jeu : 
 
