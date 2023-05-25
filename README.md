@@ -1,6 +1,6 @@
 5 Minutes
 
-tester le jeu : [https://www.pyxelstudio.net/studio/]
+tester le jeu : https://www.pyxelstudio.net/studio/
 
 
 Avancements actuels :
